@@ -334,6 +334,13 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
   #hero{padding:60px 0 48px}
   .hero-stats{gap:24px}
 }
+
+/* ─── DS INTERNAL TABS ───────────────────── */
+.ds-tab-btn{padding:12px 20px;font-size:13px;font-weight:600;color:var(--ink-3);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;letter-spacing:.01em}
+.ds-tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.ds-tab-btn:hover:not(.active){color:var(--ink)}
+.ds-tab-panel{display:none}
+.ds-tab-panel.active{display:block}
 </style>
 </head>
 <body>
@@ -349,8 +356,6 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       <li><a onclick="goto('home')" data-page="home">Home</a></li>
 
       <li><a onclick="goto('design-system')" data-page="design-system">Design System</a></li>
-      <li><a onclick="goto('components')" data-page="components">Components</a></li>
-      <li><a onclick="goto('patterns')" data-page="patterns">UI Patterns</a></li>
 
       <li><a onclick="goto('experience')" data-page="experience">Experience</a></li>
       <li><a onclick="goto('skills')" data-page="skills">Skills &amp; Tools</a></li>
@@ -368,8 +373,6 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
 <div class="mobile-menu" id="mobileMenu">
   <a onclick="goto('home');toggleMobile()">🏠 Home</a>
   <a onclick="goto('design-system');toggleMobile()">🎨 Design System</a>
-  <a onclick="goto('components');toggleMobile()">🧩 Component Library</a>
-  <a onclick="goto('patterns');toggleMobile()">📐 UI Patterns</a>
   <a onclick="goto('experience');toggleMobile()">💼 Experience</a>
   <a onclick="goto('skills');toggleMobile()">⚡ Skills &amp; Tools</a>
   <a onclick="goto('about');toggleMobile()">👤 About</a>
@@ -390,7 +393,7 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
           <h1 class="hero-h1">Crafting <em>experiences</em><br>that users love<br>&amp; teams trust.</h1>
           <p class="hero-body">I'm Muhammad Ammad — turning complex problems into clean, intuitive interfaces. I build design systems that scale and products that feel effortless.</p>
           <div class="hero-actions">
-            <button class="btn btn-primary btn-lg" onclick="goto('design-system')">View Design System</button>
+            <button class="btn btn-primary btn-lg" onclick="goto('skills')">Skills &amp; Tools</button>
             <button class="btn btn-secondary btn-lg" onclick="goto('experience')">See Experience</button>
           </div>
           <div class="hero-stats">
@@ -572,7 +575,18 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
      PAGE: DESIGN SYSTEM (Tokens)
 ══════════════════════════════════════ -->
 <div class="page" id="page-design-system">
-  <section class="section">
+
+  <!-- Internal tab nav -->
+  <div style="background:#fff;border-bottom:1px solid var(--border);position:sticky;top:56px;z-index:100">
+    <div class="wrap" style="display:flex;gap:0">
+      <button class="ds-tab-btn active" onclick="switchDsTab('tokens')">🎨 Tokens</button>
+      <button class="ds-tab-btn" onclick="switchDsTab('components')">🧩 Components</button>
+      <button class="ds-tab-btn" onclick="switchDsTab('patterns')">📐 UI Patterns</button>
+    </div>
+  </div>
+
+  <div id="ds-tokens" class="ds-tab-panel active">
+<section class="section">
     <div class="wrap">
       <p class="eyebrow">Design System · Tokens</p>
       <h2 class="sec-title">Colour &amp; Type Tokens</h2>
@@ -623,15 +637,10 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       </div>
     </div>
   </section>
-  <footer><div class="wrap"><div class="footer-links"><a href="https://behance.net/ammad2090" target="_blank">Behance</a><a href="https://dribbble.com/ammad2090" target="_blank">Dribbble</a><a href="mailto:ammad2090@gmail.com">Email</a></div></div></footer>
-</div>
+  </div>
 
-
-<!-- ══════════════════════════════════════
-     PAGE: COMPONENT LIBRARY
-══════════════════════════════════════ -->
-<div class="page" id="page-components">
-  <section class="section">
+  <div id="ds-components" class="ds-tab-panel" style="display:none">
+<section class="section">
     <div class="wrap">
       <p class="eyebrow">Component Library</p>
       <h2 class="sec-title">Buttons, Forms &amp; Feedback</h2>
@@ -749,15 +758,10 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       </div>
     </div>
   </section>
-  <footer><div class="wrap"><div class="footer-links"><a href="https://behance.net/ammad2090" target="_blank">Behance</a><a href="https://dribbble.com/ammad2090" target="_blank">Dribbble</a><a href="mailto:ammad2090@gmail.com">Email</a></div></div></footer>
-</div>
+  </div>
 
-
-<!-- ══════════════════════════════════════
-     PAGE: UI PATTERNS
-══════════════════════════════════════ -->
-<div class="page" id="page-patterns">
-  <section class="section">
+  <div id="ds-patterns" class="ds-tab-panel" style="display:none">
+<section class="section">
     <div class="wrap">
       <p class="eyebrow">Component Library · Patterns</p>
       <h2 class="sec-title">Cards, Tables &amp; Tabs</h2>
@@ -878,6 +882,8 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       </div>
     </div>
   </section>
+  </div>
+
   <footer><div class="wrap"><div class="footer-links"><a href="https://behance.net/ammad2090" target="_blank">Behance</a><a href="https://dribbble.com/ammad2090" target="_blank">Dribbble</a><a href="mailto:ammad2090@gmail.com">Email</a></div></div></footer>
 </div>
 
@@ -1193,28 +1199,53 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       <h2 class="sec-title">Let's work together</h2>
       <p class="sec-sub">Drop a message with your project details and I'll get back within 24 hours. I'm currently open to new opportunities.</p>
 
-      <div class="demo-card">
-        <div style="display:flex;flex-direction:column;gap:16px">
+      <form action="mailto:ammad2090@gmail.com" method="POST" enctype="text/plain" style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;box-shadow:var(--sh-sm);display:flex;flex-direction:column;gap:16px">
           <div class="grid-2" style="gap:14px">
-            <div class="field"><label class="field-label">Your name</label><input class="input" type="text" placeholder="e.g. Sarah Jones" /></div>
-            <div class="field"><label class="field-label">Email address</label><input class="input" type="email" placeholder="you@company.com" /></div>
+            <div class="field">
+              <label class="field-label" for="contact-name">Your name</label>
+              <input class="input" id="contact-name" name="name" type="text" placeholder="e.g. Sarah Jones" required />
+            </div>
+            <div class="field">
+              <label class="field-label" for="contact-email">Email address</label>
+              <input class="input" id="contact-email" name="email" type="email" placeholder="you@company.com" required />
+            </div>
           </div>
           <div class="field">
-            <label class="field-label">Project type</label>
-            <select class="select">
-              <option>Select…</option>
-              <option>Design System</option>
-              <option>Component Library</option>
-              <option>UI / Web Design</option>
-              <option>UX Research</option>
-              <option>Mobile App Design</option>
-              <option>Other</option>
+            <label class="field-label" for="contact-phone">Phone number <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
+            <input class="input" id="contact-phone" name="phone" type="tel" placeholder="+1 234 567 8900" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="contact-type">Project type</label>
+            <select class="select" id="contact-type" name="project_type" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="Design System">Design System</option>
+              <option value="Component Library">Component Library</option>
+              <option value="UI / Web Design">UI / Web Design</option>
+              <option value="UX Research">UX Research</option>
+              <option value="Mobile App Design">Mobile App Design</option>
+              <option value="Other">Other</option>
             </select>
           </div>
-          <div class="field"><label class="field-label">Message</label><textarea class="input" style="min-height:110px" placeholder="Tell me about your project, timeline, and budget…"></textarea></div>
-          <button class="btn btn-primary btn-lg" style="align-self:flex-start">Send message →</button>
-        </div>
-      </div>
+          <div class="field">
+            <label class="field-label" for="contact-budget">Budget range <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
+            <select class="select" id="contact-budget" name="budget">
+              <option value="" disabled selected>Select…</option>
+              <option value="Under $500">Under $500</option>
+              <option value="$500 – $1,000">$500 – $1,000</option>
+              <option value="$1,000 – $5,000">$1,000 – $5,000</option>
+              <option value="$5,000+">$5,000+</option>
+              <option value="Let's discuss">Let's discuss</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="contact-message">Message</label>
+            <textarea class="input" id="contact-message" name="message" style="min-height:120px" placeholder="Tell me about your project, timeline, and goals…" required></textarea>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button type="submit" class="btn btn-primary btn-lg">Send message →</button>
+            <button type="reset" class="btn btn-secondary">Clear form</button>
+          </div>
+      </form>
 
       <!-- Quick links -->
       <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
@@ -1245,7 +1276,7 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
      JS
 ══════════════════════════════════════ -->
 <script>
-const PAGES = ['home','design-system','components','patterns','experience','skills','about','contact'];
+const PAGES = ['home','design-system','experience','skills','about','contact'];
 
 function goto(id) {
   PAGES.forEach(p => {
@@ -1263,6 +1294,15 @@ function goto(id) {
 
 function toggleMobile() {
   document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function switchDsTab(id) {
+  document.querySelectorAll('.ds-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.ds-tab-panel').forEach(p => { p.style.display='none'; p.classList.remove('active'); });
+  document.getElementById('ds-' + id).style.display = 'block';
+  document.getElementById('ds-' + id).classList.add('active');
+  event.target.classList.add('active');
+  setTimeout(() => animateBars(), 100);
 }
 
 function switchTab(e, id) {
