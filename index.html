@@ -4,10 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Muhammad Ammad — Senior UI/UX Designer</title>
+<meta name="description" content="Muhammad Ammad, Senior UI/UX Designer with 8+ years of experience. Case studies in design systems, redesigns and frontend builds for UK mobile brands.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Muhammad Ammad — Senior UI/UX Designer">
+<meta property="og:description" content="Case studies in design systems, redesigns and frontend builds for UK mobile brands.">
+<meta property="og:url" content="https://ammad2090.github.io/portfolio/">
 <link rel="icon" type="image/png" href="https://i.ibb.co/dJsB6nXt/Gemini-Generated-Image-2mw5l02mw5l02mw5.jpg" style="">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
 <style>
 /* ─── TOKENS ─────────────────────────────── */
 :root {
@@ -507,49 +513,583 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
 .ds-tab-btn:hover:not(.active){color:var(--ink)}
 .ds-tab-panel{display:none}
 .ds-tab-panel.active{display:block}
+
+/* ═══ v2 additions ═════════════════════════════════════ */
+main{overflow-x:clip}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:6px;z-index:999}
+.skip:focus{left:8px}
+.footer-copy{margin-top:16px;font-size:12px;color:var(--ink-3)}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;font-size:14px;padding:12px 18px;border-radius:10px;box-shadow:var(--sh-lg);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:1000;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* segmented control */
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;background:var(--paper-2);border:1px solid var(--border);border-radius:10px;padding:3px}
+.seg button{border:0;background:transparent;padding:7px 13px;border-radius:7px;font:600 13px var(--sans);color:var(--ink-2);cursor:pointer}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:var(--sh-sm)}
+
+/* section header row */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.sec-head .sec-sub{margin-bottom:0}
+
+/* ─── WORK CARDS ─── */
+.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.work-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+.work-card:hover{border-color:var(--ink-3);box-shadow:var(--sh-md)}
+.work-card[hidden]{display:none}
+.work-cover{aspect-ratio:16/10;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px}
+.work-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.work-kicker{font-size:12px;color:var(--ink-3)}
+.work-title{font-family:var(--serif);font-size:23px;line-height:1.15}
+.work-desc{font-size:14px;color:var(--ink-2)}
+.work-foot{margin-top:auto;padding-top:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.work-link{font-size:14px;font-weight:600;color:var(--accent)}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:24px}
+.filter-btn{border:1px solid var(--border);background:#fff;border-radius:99px;padding:7px 14px;font:500 13px var(--sans);color:var(--ink-2);cursor:pointer}
+.filter-btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.filter-btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.filter-count{font-size:13px;color:var(--ink-3);margin-left:auto}
+
+/* brand covers (each built from that brand's own tokens) */
+.cv-rwg{background:#1F2459;color:#fff;font-family:'Poppins',var(--sans)}
+.cv-rwg::before{content:'';position:absolute;inset:0 0 auto 0;height:8px;background:linear-gradient(90deg,#D4202C 0 50%,#06A04B 50%)}
+.cv-thm{background:#242B60;color:#fff;font-family:'General Sans','Poppins',var(--sans)}
+.cv-thm::after{content:'';position:absolute;width:60%;aspect-ratio:1;right:-12%;top:-30%;border-radius:50%;background:radial-gradient(circle,#2096D3 0%,transparent 65%);opacity:.9}
+.cv-now{background:#0B0F0D;color:#fff;font-family:'Space Grotesk',var(--sans)}
+.cv-bb{background:var(--paper-2);color:var(--ink);border-bottom:1px solid var(--border)}
+.cv-word{position:relative;z-index:1;font-weight:700;font-size:clamp(28px,4.2vw,44px);line-height:.95;letter-spacing:-.02em}
+.cv-word small{display:block;font-size:14px;font-weight:500;letter-spacing:0;margin-top:8px;opacity:.75}
+.cv-sticker{position:absolute;z-index:1;font-weight:700;font-size:13px;padding:6px 12px;border:2.5px solid #242B60;border-radius:10px;box-shadow:4px 4px 0 #242B60}
+.cv-tiles{position:absolute;top:18px;right:18px;display:grid;grid-template-columns:repeat(3,38px);gap:6px}
+.cv-tiles i{height:38px;border-radius:6px;border:2px solid #B6FF3C}
+.cv-tiles i:nth-child(1){background:#B6FF3C}.cv-tiles i:nth-child(5){background:#1BB127;border-color:#1BB127}
+
+/* ─── BRAND LAB (multi-brand switcher) ─── */
+.brandlab{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start}
+.bl-side h3{font-family:var(--serif);font-size:26px;line-height:1.15;margin:14px 0 8px}
+.bl-note{font-size:14px;color:var(--ink-2);margin-bottom:18px}
+.bl-tokens{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.bl-tok{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;cursor:pointer;text-align:left;font-family:var(--sans);color:var(--ink)}
+.bl-tok:hover{border-color:var(--ink-3)}
+.bl-tok i{width:22px;height:22px;border-radius:6px;border:1px solid rgba(0,0,0,.12);flex-shrink:0}
+.bl-tok code{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.bl-meta{font-size:13px;color:var(--ink-2);line-height:1.6}
+.bl-meta b{color:var(--ink)}
+.bl-stage{--b-bg:#1F2459;--b-primary:#D4202C;--b-accent:#06A04B;--b-font:'Poppins',var(--sans);background:var(--b-bg);color:#fff;font-family:var(--b-font);border-radius:var(--r-xl);padding:clamp(20px,4vw,36px);min-height:360px;position:relative;overflow:hidden;transition:background .35s}
+.bl-stage[data-brand="thm"]{--b-bg:#242B60;--b-primary:#2096D3;--b-accent:#DDE22F;--b-font:'Poppins',var(--sans)}
+.bl-stage[data-brand="now"]{--b-bg:#0B0F0D;--b-primary:#1BB127;--b-accent:#B6FF3C;--b-font:'Space Grotesk',var(--sans)}
+.bl-stage[data-brand="rwg"]{--b-bg:#1F2459;--b-primary:#D4202C;--b-accent:#06A04B;--b-font:'Poppins',var(--sans)}
+.bl-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px;position:relative;z-index:1}
+.bl-brand{font-weight:700;font-size:22px;letter-spacing:-.01em}
+.bl-navdots{display:flex;gap:14px;font-size:13px;opacity:.75}
+.bl-head{font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.05;max-width:14ch;margin-bottom:24px;position:relative;z-index:1}
+.bl-cards{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;position:relative;z-index:1}
+.bl-card{padding:18px;transition:all .35s}
+.bl-card .t{font-size:11px;font-weight:600;display:inline-block;padding:3px 9px;border-radius:99px}
+.bl-card .n{font-weight:700;font-size:20px;margin:10px 0 8px}
+.bl-card .l{height:7px;border-radius:4px;margin:7px 0;opacity:.35;background:currentColor}
+.bl-card .l.s{width:55%}
+.bl-card .b{margin-top:14px;font-weight:600;font-size:13px;text-align:center;padding:10px;transition:all .35s}
+/* rwg: clean white cards */
+[data-brand="rwg"] .bl-card{background:#fff;color:#1F2459;border-radius:16px;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+[data-brand="rwg"] .bl-card .t{background:#E3F5EA;color:#06A04B}
+[data-brand="rwg"] .bl-card .b{background:#D4202C;color:#fff;border-radius:10px}
+/* thm: neon glass */
+[data-brand="thm"] .bl-card{background:rgba(255,255,255,.06);border:1px solid rgba(221,226,47,.35);border-radius:18px;backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(32,150,211,.4),0 0 28px rgba(32,150,211,.55)}
+[data-brand="thm"] .bl-card .t{background:rgba(221,226,47,.15);color:#DDE22F}
+[data-brand="thm"] .bl-card .b{background:#DDE22F;color:#242B60;border-radius:99px}
+[data-brand="thm"] .bl-glow{opacity:1}
+.bl-glow{position:absolute;width:420px;height:420px;right:-120px;top:-160px;border-radius:50%;background:radial-gradient(circle,#2096D3,transparent 65%);opacity:0;transition:opacity .35s}
+/* now: bold bento, neo-brutalist */
+[data-brand="now"] .bl-card{background:#141A16;border:2px solid #B6FF3C;border-radius:6px;box-shadow:6px 6px 0 #B6FF3C}
+[data-brand="now"] .bl-card:nth-child(2){background:#B6FF3C;color:#0B0F0D;box-shadow:6px 6px 0 #1BB127;border-color:#0B0F0D}
+[data-brand="now"] .bl-card .t{background:#1BB127;color:#0B0F0D;border-radius:4px}
+[data-brand="now"] .bl-card .b{background:#1BB127;color:#0B0F0D;border:2px solid #0B0F0D;border-radius:4px;box-shadow:3px 3px 0 #0B0F0D}
+[data-brand="now"] .bl-card:nth-child(2) .b{background:#0B0F0D;color:#B6FF3C}
+.bl-caption{font-size:13px;color:var(--ink-3);margin-top:12px}
+
+/* ─── PROCESS ─── */
+.process{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:p;border-top:1px solid var(--border)}
+.process li{counter-increment:p;padding:22px 22px 6px 0}
+.process li+li{padding-left:22px;border-left:1px solid var(--border)}
+.process li::before{content:counter(p);display:block;font-family:var(--serif);font-size:40px;line-height:1;color:var(--accent);margin-bottom:12px}
+.process b{display:block;font-size:16px;margin-bottom:6px}
+.process span{font-size:14px;color:var(--ink-2);line-height:1.6}
+.cta-band{background:var(--ink);color:#fff;border-radius:var(--r-xl);padding:clamp(28px,5vw,52px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.cta-band h2{font-family:var(--serif);font-size:clamp(26px,4vw,40px);line-height:1.1;max-width:18ch}
+.cta-band p{color:#c9c9c9;margin-top:8px;max-width:48ch}
+.cta-band .btn-secondary{background:#fff;color:var(--ink);border-color:#fff}
+
+/* ─── CASE STUDY ─── */
+.cs-progress{position:fixed;top:56px;left:0;height:3px;background:var(--accent);width:0;z-index:199;transition:width .08s linear}
+.cs-head{padding:36px 0 0}
+.cs-h1{font-family:var(--serif);font-size:clamp(36px,6vw,58px);line-height:1.05;letter-spacing:-.02em;max-width:20ch;margin:16px 0}
+.cs-lead{font-size:18px;line-height:1.6;color:var(--ink-2);max-width:62ch}
+.cs-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;margin:32px 0;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cs-meta dt{font-size:12px;color:var(--ink-3);margin-bottom:4px}
+.cs-meta dd{font-size:14px;font-weight:600}
+.cs-cover{border-radius:var(--r-xl);min-height:320px;padding:clamp(24px,5vw,52px);position:relative;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+.cs-layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:56px;margin-top:56px}
+.cs-toc{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:2px;font-size:13px}
+.cs-toc p{font-weight:600;color:var(--ink);margin-bottom:8px}
+.cs-toc a{color:var(--ink-3);text-decoration:none;padding:6px 0 6px 12px;border-left:2px solid var(--border)}
+.cs-toc a:hover{color:var(--ink)}
+.cs-toc a.on{color:var(--ink);border-left-color:var(--accent);font-weight:600}
+.cs-sec{padding:0 0 56px;scroll-margin-top:84px}
+.cs-sec+.cs-sec{padding-top:56px;border-top:1px solid var(--border)}
+.cs-sec h2{font-family:var(--serif);font-size:30px;line-height:1.15;margin-bottom:14px}
+.cs-sec h3{font-size:16px;font-weight:700;margin:26px 0 8px}
+.cs-sec p,.cs-sec li{color:var(--ink-2);font-size:16px;line-height:1.7}
+.cs-sec p{max-width:66ch;margin-bottom:14px}
+.cs-sec ul.plain{max-width:66ch;padding-left:20px;margin-bottom:14px}
+.cs-sec ul.plain li{margin-bottom:6px}
+.callout{border-left:3px solid var(--accent);background:#fff;padding:14px 18px;border-radius:0 var(--r-md) var(--r-md) 0;margin:18px 0;max-width:66ch;font-size:15px;color:var(--ink-2)}
+.callout b{color:var(--ink)}
+.cs-pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:40px 0 64px;border-top:1px solid var(--border)}
+.cs-pager a{display:block;border:1px solid var(--border);background:#fff;border-radius:var(--r-lg);padding:18px 20px;text-decoration:none;color:var(--ink)}
+.cs-pager a:hover{border-color:var(--ink-3)}
+.cs-pager small{display:block;font-size:12px;color:var(--ink-3);margin-bottom:4px}
+.cs-pager b{font-family:var(--serif);font-size:20px;font-weight:400}
+.cs-pager a:last-child{text-align:right}
+
+/* swatches (click to copy) */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:18px 0}
+.sw{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;background:#fff;cursor:pointer;text-align:left;padding:0;font-family:var(--sans);color:var(--ink)}
+.sw:hover{border-color:var(--ink-3)}
+.sw i{display:block;height:84px}
+.sw span{display:block;padding:9px 12px;font-size:13px;font-weight:600}
+.sw code{display:block;padding:0 12px 10px;font-family:var(--mono);font-size:12px;color:var(--ink-3);font-weight:400}
+.typespec{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:22px;margin:12px 0}
+.typespec .big{font-weight:700;font-size:46px;line-height:1}
+.typespec .row{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:15px}
+.hint{font-size:13px;color:var(--ink-3)}
+
+/* step flow */
+.flow{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0;counter-reset:f}
+.flow li{counter-increment:f;background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:16px;font-size:14px}
+.flow li::before{content:counter(f);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:700;margin-bottom:10px}
+.flow b{display:block;font-size:15px;margin-bottom:4px;color:var(--ink)}
+
+/* generic tab viewer */
+.viewer{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin:18px 0}
+.viewer-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--border);background:var(--paper)}
+.viewer-panel{padding:22px}
+.viewer-panel[hidden]{display:none}
+.viewer-panel p{font-size:15px;margin:14px 0 0}
+
+/* RWG roaming concepts (large) */
+.rc-art{height:220px;border-radius:12px;background:#F3F5F9;display:grid;place-items:center;padding:20px;font-family:'Poppins',var(--sans);color:#1F2459}
+.rc-pass{width:min(460px,100%);height:150px;background:#fff;border-radius:14px;display:grid;grid-template-columns:2fr 1fr;box-shadow:0 8px 24px rgba(11,31,61,.14);position:relative}
+.rc-pass::before,.rc-pass::after{content:'';position:absolute;left:66.6%;width:22px;height:22px;border-radius:50%;background:#F3F5F9;transform:translateX(-50%)}
+.rc-pass::before{top:-11px}.rc-pass::after{bottom:-11px}
+.rc-pass>div{padding:18px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.rc-pass>div+div{border-left:2px dashed #CBD2DE}
+.rc-pass small{font-size:11px;color:#6B7A90}
+.rc-pass b{font-size:22px}
+.rc-pass .red{color:#D4202C}
+.rc-bento{width:min(460px,100%);height:180px;display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:8px}
+.rc-bento div{border-radius:12px;padding:12px;font-size:12px;font-weight:600;display:flex;align-items:flex-end}
+.rc-bento div:nth-child(1){grid-row:1/3;background:#1F2459;color:#fff;font-size:18px}
+.rc-bento div:nth-child(2){background:#06A04B;color:#fff}
+.rc-bento div:nth-child(3){background:#fff}
+.rc-bento div:nth-child(4){grid-column:2/4;background:#D4202C;color:#fff}
+.rc-journey{width:min(420px,100%);position:relative;padding-left:30px;display:flex;flex-direction:column;gap:16px}
+.rc-journey::before{content:'';position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:#9AA6B8}
+.rc-journey div{position:relative;background:#fff;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:600;box-shadow:0 2px 8px rgba(11,31,61,.08)}
+.rc-journey div::before{content:'';position:absolute;left:-27px;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:50%;background:#1F2459;border:3px solid #F3F5F9}
+.rc-journey div:last-child::before{background:#06A04B}
+
+/* RWG AI widget demo */
+.ai-demo{position:relative;height:260px;border:1px solid var(--border);border-radius:var(--r-lg);background:#F3F5F9;overflow:hidden;margin:18px 0;font-family:'Poppins',var(--sans)}
+.ai-demo .ln{position:absolute;left:24px;height:9px;border-radius:5px;background:#DCE1EA}
+.ai-pill{position:absolute;right:20px;bottom:20px;border:0;cursor:pointer;background:#1F2459;color:#fff;font:600 13px 'Poppins',var(--sans);padding:11px 16px;border-radius:99px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 20px rgba(11,31,61,.3)}
+.ai-pill::before{content:'';width:8px;height:8px;border-radius:50%;background:#06A04B}
+.ai-panel{position:absolute;right:20px;bottom:72px;width:min(300px,calc(100% - 40px));background:#fff;border-radius:14px;box-shadow:0 16px 40px rgba(11,31,61,.22);padding:16px;color:#1F2459;transform:translateY(10px);opacity:0;pointer-events:none;transition:all .2s}
+.ai-demo.open .ai-panel{transform:none;opacity:1;pointer-events:auto}
+.ai-panel b{font-size:14px;display:block;margin-bottom:10px}
+.ai-panel i{display:block;height:8px;border-radius:4px;background:#E7EAF0;margin:8px 0}
+
+/* THM */
+.dirs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.dir{border:1px solid var(--border);background:#fff;border-radius:99px;padding:6px 14px;font-size:13px;color:var(--ink-3)}
+.dir.pick{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.sticker-stage{background:#F4F1FF;border:3px solid #242B60;border-radius:16px;padding:34px 24px 40px;position:relative;overflow:hidden;font-family:'General Sans','Poppins',var(--sans);color:#242B60;margin:18px 0;min-height:250px}
+.sticker-stage h4{font-size:clamp(28px,4vw,44px);line-height:1;font-weight:700;max-width:12ch;position:relative;z-index:1}
+.stk{position:absolute;font-weight:700;font-size:14px;padding:8px 14px;border:3px solid #242B60;border-radius:12px;box-shadow:5px 5px 0 #242B60;transition:transform .2s}
+.stk:hover{transform:rotate(0) scale(1.06)!important}
+.sticker-card{margin-top:22px;width:min(260px,100%);background:#2096D3;color:#fff;border:3px solid #242B60;border-radius:14px;box-shadow:7px 7px 0 #242B60;padding:16px;transform:rotate(-2deg);position:relative;z-index:1}
+.sticker-card b{font-size:18px}
+.sticker-card i{display:block;height:7px;border-radius:4px;background:rgba(255,255,255,.4);margin:8px 0}
+.frame-wrap{background:var(--paper-2);border-radius:var(--r-md);padding:18px;display:flex;justify-content:center;overflow:hidden}
+.frame{width:100%;max-width:760px;border-radius:12px;overflow:hidden;transition:max-width .35s,background .35s,color .35s;font-family:'General Sans','Poppins',var(--sans);position:relative;border:1px solid var(--border)}
+.frame[data-theme="dark"]{background:#242B60;color:#fff}
+.frame[data-theme="light"]{background:#fff;color:#242B60}
+.frame[data-size="mobile"]{max-width:430px}
+.frame-in{padding:28px 32px;position:relative}
+.frame[data-size="mobile"] .frame-in{padding:22px 16px}
+.frame-guides{position:absolute;inset:0;pointer-events:none;display:none}
+.frame[data-size="mobile"] .frame-guides{display:block}
+.frame-guides::before,.frame-guides::after{content:'';position:absolute;top:0;bottom:0;width:16px;background:rgba(221,226,47,.25)}
+.frame[data-theme="light"] .frame-guides::before,.frame[data-theme="light"] .frame-guides::after{background:rgba(32,150,211,.12)}
+.frame-guides::before{left:0}.frame-guides::after{right:0}
+.fr-h{font-weight:700;font-size:30px;line-height:1.05;max-width:14ch}
+.frame[data-size="mobile"] .fr-h{font-size:24px}
+.fr-sub{opacity:.7;font-size:14px;margin:10px 0 18px}
+.fr-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.frame[data-size="mobile"] .fr-cards{grid-template-columns:1fr}
+.fr-card{border-radius:14px;padding:14px;min-height:76px}
+.frame[data-theme="dark"] .fr-card{background:rgba(255,255,255,.06);border:1px solid rgba(221,226,47,.35)}
+.frame[data-theme="light"] .fr-card{background:#EEF2FB;border:1px solid #D5DEF3}
+.fr-card i{display:block;height:7px;border-radius:4px;background:currentColor;opacity:.3;margin:7px 0}
+.fr-btn{display:inline-block;margin-top:18px;background:#DDE22F;color:#242B60;font-weight:600;font-size:13px;padding:10px 18px;border-radius:99px}
+.frame[data-theme="light"] .fr-btn{background:#2096D3;color:#fff}
+.frame-label{font-family:var(--mono);font-size:12px;color:var(--ink-3);text-align:center;margin-top:10px}
+.glass-stage{background:#242B60;border-radius:var(--r-lg);padding:36px 24px;position:relative;overflow:hidden;margin:18px 0;display:grid;place-items:center;min-height:260px}
+.glass-card{position:relative;z-index:1;width:min(340px,100%);background:rgba(255,255,255,.07);border:1px solid rgba(221,226,47,.4);border-radius:20px;padding:22px;backdrop-filter:blur(12px);box-shadow:0 0 30px rgba(32,150,211,.6);color:#fff;font-family:'General Sans','Poppins',var(--sans)}
+.glass-card b{font-size:20px}
+.glass-card i{display:block;height:8px;border-radius:4px;background:rgba(255,255,255,.25);margin:9px 0}
+.glass-card span{display:inline-block;margin-top:12px;background:#DDE22F;color:#242B60;font-weight:600;font-size:13px;padding:9px 16px;border-radius:99px}
+.wave{position:absolute;left:-2%;width:130%;bottom:-20px;height:140px;opacity:.6}
+.wave path{animation:wave 6s ease-in-out infinite alternate}
+@keyframes wave{to{transform:translateX(-40px)}}
+.wave-toggle{position:absolute;top:14px;right:14px;z-index:2}
+.glass-stage.paused .wave path{animation-play-state:paused}
+.rules{list-style:none;display:grid;gap:12px;margin:18px 0}
+.rules li{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px;font-size:15px}
+.rules b{display:block;color:var(--ink);margin-bottom:2px}
+
+/* NOW MOBILE */
+.bento-stage{background:#0B0F0D;border-radius:var(--r-lg);padding:20px;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:110px;gap:12px;font-family:'Space Grotesk',var(--sans);margin:18px 0}
+.bt{border:2px solid #B6FF3C;border-radius:8px;padding:14px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;box-shadow:5px 5px 0 #B6FF3C;background:#141A16;cursor:default;transition:transform .15s,box-shadow .15s}
+.bt:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #B6FF3C}
+.bt small{font-size:12px;opacity:.75}
+.bt b{font-size:20px;line-height:1.05}
+.bt.big{grid-column:span 2;grid-row:span 2}
+.bt.big b{font-size:34px}
+.bt.lime{background:#B6FF3C;color:#0B0F0D;border-color:#0B0F0D;box-shadow:5px 5px 0 #1BB127}
+.bt.green{background:#1BB127;color:#0B0F0D;border-color:#0B0F0D;box-shadow:5px 5px 0 #B6FF3C}
+.bt.wide{grid-column:span 2}
+details.acc{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);margin:10px 0;max-width:66ch}
+details.acc summary{cursor:pointer;padding:14px 18px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:'+';font-size:18px;color:var(--ink-3)}
+details.acc[open] summary::after{content:'–'}
+details.acc div{padding:0 18px 16px;font-size:15px;color:var(--ink-2);line-height:1.65}
+
+/* BookBetter stages */
+.stage-panel{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.stage-num{font-family:var(--serif);font-size:56px;line-height:.9;color:var(--accent)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.fact-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0}
+.fact{background:#fff;border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px}
+.fact small{display:block;font-size:12px;color:var(--ink-3)}
+.fact b{font-size:15px}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+.form-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;box-shadow:var(--sh-sm);display:flex;flex-direction:column;gap:16px}
+.form-card[hidden]{display:none}
+.err{font-size:13px;color:var(--red);min-height:0}
+.input.invalid,.select.invalid{border-color:var(--red)}
+.sent{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:36px 28px;text-align:center}
+.sent[hidden]{display:none}
+.sent .ok{width:52px;height:52px;border-radius:50%;background:var(--green-lt);color:var(--green);display:grid;place-items:center;font-size:24px;margin:0 auto 14px}
+.next-steps{list-style:none;counter-reset:n;display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.next-steps li{counter-increment:n;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:14px;color:var(--ink-2)}
+.next-steps li::before{content:counter(n);width:26px;height:26px;border-radius:50%;background:var(--paper-2);border:1px solid var(--border);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--ink)}
+.side-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:24px}
+.side-card h3{font-size:16px;margin-bottom:12px}
+.copy-row{display:flex;gap:8px;align-items:center;margin:12px 0 4px;flex-wrap:wrap}
+
+/* skill links */
+a.skill-pill{text-decoration:none;cursor:pointer}
+a.skill-pill::after{content:' ↗';font-size:11px;opacity:.6}
+.exp-case{display:inline-block;margin-top:10px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+
+/* DS doc panel */
+.ds-doc{position:sticky;bottom:16px;margin-top:20px;background:var(--ink);color:#fff;border-radius:var(--r-md);padding:14px 18px;font-size:14px;display:none;box-shadow:var(--sh-lg);z-index:5}
+.ds-doc.show{display:block}
+.ds-doc b{color:#fff}
+.btn.is-loading{opacity:.75;pointer-events:none}
+.btn[aria-pressed="true"]{background:var(--amber-lt);color:var(--amber);border-color:var(--amber)}
+
+@media(max-width:900px){
+  .brandlab{grid-template-columns:1fr}
+  .cs-layout{grid-template-columns:1fr;gap:0}
+  .cs-toc{display:none}
+  .cs-cover{grid-template-columns:1fr}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .process{grid-template-columns:1fr 1fr}
+  .process li:nth-child(3){padding-left:0;border-left:0}
+}
+@media(max-width:600px){
+  .now-cover-tiles .bt{padding:10px}
+  .now-cover-tiles .bt b{font-size:13px}
+  .process{grid-template-columns:1fr}
+  .process li+li{padding-left:0;border-left:0;border-top:1px solid var(--border)}
+  .flow{grid-template-columns:1fr}
+  .bl-cards{grid-template-columns:1fr}
+  .bento-stage{grid-template-columns:1fr 1fr;grid-auto-rows:96px}
+  .bt.big{grid-column:span 2;grid-row:span 1}
+  .bt.big b{font-size:26px}
+  .cs-pager{grid-template-columns:1fr}
+  .cs-pager a:last-child{text-align:left}
+  .filter-count{margin-left:0;width:100%}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ═══ v3: image-led layout ═════════════════════════════ */
+.mock-browser{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 30px 60px -24px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.06)}
+.mb-bar{height:30px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#F1F1EE;border-bottom:1px solid #E4E3DE}
+.mb-bar i{width:9px;height:9px;border-radius:50%;background:#D6D4CD}
+.mb-bar i:nth-child(1){background:#F26B5E}.mb-bar i:nth-child(2){background:#F5BF4F}.mb-bar i:nth-child(3){background:#5FC454}
+.mb-url{margin:0 auto;font:500 11px var(--sans);color:#8A887F;background:#fff;border-radius:6px;padding:3px 14px;transform:translateX(-24px)}
+.mock-browser img,.mock-plain img{display:block;width:100%;height:auto;cursor:zoom-in}
+.mock-plain{border-radius:16px;overflow:hidden;background:#3B3B3B;box-shadow:0 20px 50px -24px rgba(0,0,0,.45)}
+
+.stage{display:block;border-radius:24px;padding:clamp(18px,4vw,48px);position:relative;overflow:hidden;text-decoration:none}
+.stage .mock-browser{position:relative;z-index:1;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+a.stage:hover .mock-browser,.tile:hover .mock-browser{transform:translateY(-6px)}
+.bg-rwg{background:radial-gradient(120% 90% at 0% 0%,#D4202C 0%,transparent 45%),radial-gradient(120% 90% at 100% 100%,#06A04B 0%,transparent 45%),#1F2459}
+.bg-thm{background:radial-gradient(90% 80% at 85% 10%,#DDE22F33 0%,transparent 60%),linear-gradient(160deg,#2096D3,#064F92 45%,#242B60 85%)}
+.bg-now{background:radial-gradient(80% 70% at 20% 0%,#1BB12755 0%,transparent 60%),radial-gradient(70% 60% at 100% 100%,#B6FF3C33,transparent 60%),#0B0F0D}
+.bg-bb{background:linear-gradient(150deg,#F3ECF8,#E3D3EE)}
+.bg-ball{background:linear-gradient(150deg,#1B2433,#0F1520)}
+.bg-pri{background:linear-gradient(150deg,#0F3B37,#0A1F1E)}
+.bg-cow{background:linear-gradient(150deg,#EEEBE4,#DCD6CA)}
+
+.logo-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fff}
+.logo-strip .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px}
+.logo-strip p{font-size:13px;color:var(--ink-3)}
+.logos{display:flex;flex-wrap:wrap;gap:12px 34px;flex:1;justify-content:space-between}
+.logos span{font-family:var(--serif);font-size:21px;color:var(--ink-3)}
+
+.feature{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(24px,5vw,64px);align-items:center;margin-bottom:clamp(48px,8vw,96px)}
+.feature:last-child{margin-bottom:0}
+.feature.rev{grid-template-columns:1fr 1.45fr}
+.feature.rev .stage{order:2}
+.feature-txt h3{font-family:var(--serif);font-size:clamp(30px,4vw,44px);line-height:1.05;margin:8px 0 12px}
+.feature-txt p{color:var(--ink-2);font-size:16px;max-width:40ch}
+.kicker{font-size:13px;color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 20px}
+.chip{font-size:12px;font-weight:500;padding:4px 11px;border-radius:99px;background:#fff;border:1px solid var(--border);color:var(--ink-2)}
+.arrow-link{font-weight:600;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
+.arrow-link::after{content:' →'}
+.arrow-link:hover{color:var(--accent)}
+
+.tile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.tile{display:block;text-decoration:none;color:inherit}
+.tile[hidden]{display:none}
+.tile-stage{padding:clamp(16px,3vw,32px)}
+.tile-txt{padding:16px 4px 0}
+.tile-txt h3{font-family:var(--serif);font-size:26px;line-height:1.1}
+.tile-txt p{color:var(--ink-2);font-size:14px;margin-top:6px}
+.tile-txt .chips{margin:12px 0 0}
+
+.more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.more{margin:0}
+.more-stage{padding:20px 20px 0;border-radius:20px 20px 20px 20px;height:300px}
+.more-stage .mock-browser{border-radius:10px 10px 0 0}
+.more figcaption{padding:12px 4px 0;display:flex;flex-direction:column;gap:2px}
+.more figcaption b{font-size:15px}
+.more figcaption span{font-size:13px;color:var(--ink-3)}
+
+/* case study v3 */
+.cs2-hero{color:#fff;padding:36px 0 0;overflow:hidden}
+.cs2-hero.bg-bb{color:var(--ink)}
+.cs2-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,8vw,96px);line-height:1;letter-spacing:-.02em;margin:18px 0 14px}
+.cs2-intro{font-size:18px;line-height:1.55;max-width:56ch;opacity:.85}
+.cs2-hero-img{margin:36px auto -1px;max-width:980px;transform:translateY(40px)}
+.cs2-hero-img .mock-browser{border-radius:14px 14px 0 0}
+.breadcrumb.on-dark .breadcrumb-item,.breadcrumb.on-dark .breadcrumb-item a{color:inherit;opacity:.75}
+.breadcrumb.on-dark .breadcrumb-item.active{opacity:1}
+.cs2-meta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:72px 0 28px;border-bottom:1px solid var(--border)}
+.cs2-meta dl{display:flex;flex-wrap:wrap;gap:16px 44px}
+.cs2-meta dt{font-size:12px;color:var(--ink-3)}
+.cs2-meta dd{font-size:15px;font-weight:600}
+.cs2-sec{padding:64px 0 8px;scroll-margin-top:72px}
+.cs2-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:32px;align-items:end;margin-bottom:28px}
+.cs2-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,40px);line-height:1.05}
+.cs2-head p{color:var(--ink-2);font-size:16px;max-width:52ch}
+.shot{margin:0 0 28px}
+.shot figcaption,.cmp-panel figcaption{font-size:13px;color:var(--ink-3);margin-top:10px}
+.shot-narrow{max-width:860px;margin-left:auto;margin-right:auto}
+.shots-2 .shot-narrow{max-width:none}
+.shots-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.shots-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cs2-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cmp{margin-bottom:28px}
+.cmp .seg{margin-bottom:16px}
+.cmp-panel{margin:0}
+.cmp-panel[hidden]{display:none}
+.swatch-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sw2{display:flex;flex-direction:column;align-items:stretch;padding:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#fff;cursor:pointer;text-align:left;font-family:var(--sans);color:var(--ink)}
+.sw2 i{height:140px;display:block}
+.sw2 span{padding:12px 14px;font-weight:600;font-size:14px;display:flex;justify-content:space-between}
+.sw2 code{font-family:var(--mono);font-weight:400;font-size:12px;color:var(--ink-3)}
+.sw2:hover{border-color:var(--ink-3)}
+
+/* phone mockups */
+.phone-stage{margin-bottom:28px;padding:clamp(28px,5vw,56px) clamp(16px,4vw,48px)}
+.phones{display:flex;gap:clamp(16px,3vw,36px);overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 10px 10px;scrollbar-width:thin}
+.phone-cell{margin:0;flex:0 0 auto;scroll-snap-align:center;text-align:center}
+.phone{--pw:clamp(170px,16vw,220px);position:relative;width:var(--pw);padding:calc(var(--pw)*.022);border-radius:calc(var(--pw)*.155);background:linear-gradient(145deg,#f2f1ee 0%,#c9c6c1 22%,#e9e7e3 45%,#a9a6a1 70%,#dcdad6 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),inset 0 0 0 2px rgba(0,0,0,.18),0 30px 50px -22px rgba(0,0,0,.65);transition:transform .3s}
+.phone .bezel{padding:calc(var(--pw)*.03);background:#0a0a0b;border-radius:calc(var(--pw)*.135)}
+.phone .btn-l,.phone .btn-r{position:absolute;width:3px;background:linear-gradient(90deg,#9e9b96,#e6e4e0,#a8a5a0);pointer-events:none}
+.phone .btn-l{left:-3px;border-radius:2px 0 0 2px}
+.phone .btn-r{right:-3px;border-radius:0 2px 2px 0}
+.phone .b1{top:15%;height:4%}.phone .b2{top:25%;height:6.5%}.phone .b3{top:33.5%;height:6.5%}.phone .b4{top:21%;height:12%}
+.phone:hover{transform:translateY(-6px)}
+.phone .screen{width:100%;aspect-ratio:430/932;border-radius:calc(var(--pw)*.11);overflow:hidden;background:#1c1d20}
+.phone .screen img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;cursor:zoom-in}
+.island{position:absolute;top:calc(var(--pw)*.078);left:50%;transform:translateX(-50%);width:31%;height:calc(var(--pw)*.088);border-radius:99px;background:#000;z-index:2}
+.island::after{content:'';position:absolute;right:12%;top:50%;transform:translateY(-50%);width:calc(var(--pw)*.042);height:calc(var(--pw)*.042);border-radius:50%;background:radial-gradient(circle at 40% 35%,#9b7bff 0 18%,#3a2a78 40%,#141022 75%)}
+.phone-cell figcaption{margin-top:14px;font-size:13px;color:rgba(255,255,255,.8)}
+.bg-bb .phone-cell figcaption,.bg-cow .phone-cell figcaption{color:var(--ink-2)}
+.phones .phone-cell:first-child{margin-left:auto}.phones .phone-cell:last-child{margin-right:auto}
+
+/* iPad mockups (portrait, 820 x 1180) */
+.pad-stage{margin-bottom:28px;padding:clamp(28px,5vw,56px) clamp(16px,4vw,48px)}
+.pads{display:flex;gap:clamp(18px,3vw,36px);overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 10px 10px;scrollbar-width:thin}
+.pad-cell{margin:0;flex:0 0 auto;scroll-snap-align:center;text-align:center}
+.pads .pad-cell:first-child{margin-left:auto}.pads .pad-cell:last-child{margin-right:auto}
+.ipad{--w:clamp(200px,18vw,250px);position:relative;width:var(--w);padding:calc(var(--w)*.016);border-radius:calc(var(--w)*.075);background:linear-gradient(145deg,#f2f1ee 0%,#c9c6c1 22%,#e9e7e3 45%,#a9a6a1 70%,#dcdad6 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),inset 0 0 0 2px rgba(0,0,0,.18),0 30px 50px -22px rgba(0,0,0,.6);transition:transform .3s}
+.ipad .pad-bezel{padding:calc(var(--w)*.04);background:#0a0a0b;border-radius:calc(var(--w)*.062)}
+.ipad .btn-t,.ipad .btn-r{position:absolute;background:linear-gradient(90deg,#9e9b96,#e6e4e0,#a8a5a0);pointer-events:none}
+.ipad .btn-t{top:-3px;right:14%;width:11%;height:3px;border-radius:2px 2px 0 0;background:linear-gradient(180deg,#9e9b96,#e6e4e0)}
+.ipad .btn-r{right:-3px;width:3px;border-radius:0 2px 2px 0}
+.ipad .v1{top:9%;height:7%}.ipad .v2{top:17.5%;height:7%}
+.ipad:hover{transform:translateY(-6px)}
+.cam{position:absolute;top:calc(var(--w)*.032);left:50%;transform:translateX(-50%);width:calc(var(--w)*.022);height:calc(var(--w)*.022);min-width:5px;min-height:5px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#9b7bff 0 18%,#3a2a78 40%,#141022 75%);z-index:2}
+.pad-screen{width:100%;aspect-ratio:820/1180;border-radius:calc(var(--w)*.03);overflow:hidden;background:#fff}
+.pad-screen img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;cursor:zoom-in}
+.pad-cell figcaption{margin-top:14px;font-size:13px;color:rgba(255,255,255,.85)}
+
+/* design system grid */
+.ds-src{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin-bottom:16px}
+.ds-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;align-items:start;margin-bottom:24px}
+.ds-card{margin:0;background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.ds-card img{display:block;width:100%;height:auto;cursor:zoom-in}
+.ds-card figcaption{font-size:12px;color:var(--ink-3);padding:8px 12px;border-top:1px solid var(--border)}
+.ds-card.s3{grid-column:span 3}.ds-card.s6{grid-column:span 6}.ds-card.s2{grid-column:span 2}
+.ds-kit{margin-top:8px}
+@media(max-width:700px){.ds-card.s3,.ds-card.s2{grid-column:span 6}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:1200;background:rgba(10,10,10,.92);display:none;align-items:center;justify-content:center;padding:56px 64px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb-cap{position:absolute;left:0;right:0;bottom:16px;text-align:center;color:#ddd;font-size:14px}
+.lb button{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer}
+.lb button:hover{background:rgba(255,255,255,.25)}
+.lb-close{top:14px;right:14px}.lb-prev{left:12px;top:50%;transform:translateY(-50%)}.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+
+@media(max-width:900px){
+  .feature,.feature.rev{grid-template-columns:1fr}
+  .feature.rev .stage{order:0}
+  .tile-grid,.more-grid{grid-template-columns:1fr}
+  .cs2-head{grid-template-columns:1fr;gap:8px}
+  .shots-2,.shots-3{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .swatch-row,.cs2-facts{grid-template-columns:1fr}
+  .logos{justify-content:flex-start;gap:6px 18px}
+  .logos span{font-size:17px}
+  .logo-strip .wrap{gap:10px}
+  .lb{padding:56px 8px}
+  .lb-prev,.lb-next{top:auto;bottom:44px;transform:none}
+}
+
+/* Majlis */
+.bg-mj{background:radial-gradient(90% 80% at 85% 10%,#E7F2EC33 0%,transparent 60%),linear-gradient(160deg,#0F6B49,#0A3F2C 80%)}
+.finds{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.find{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;position:relative}
+.find .fn{position:absolute;top:12px;right:16px;font-family:var(--serif);font-size:30px;color:#0F6B49;opacity:.35}
+.ftag{display:inline-block;font-size:11px;font-weight:600;color:#0F6B49;background:#E7F2EC;border-radius:99px;padding:3px 10px;margin-bottom:10px}
+.find b{display:block;font-size:16px;margin-bottom:6px}
+.find p{font-size:14px;color:var(--ink-2);line-height:1.55}
+.split{display:grid;grid-template-columns:1.9fr 1fr;gap:24px;align-items:center}
+.split .phone-stage{margin-bottom:28px}
+.fixes{list-style:none;counter-reset:fx;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:4px 0 28px;padding:0}
+.fixes li{counter-increment:fx;background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--ink-2)}
+.fixes li::before{content:counter(fx);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#0F6B49;color:#fff;font-size:12px;font-weight:700;margin-bottom:8px}
+.fixes b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.fixes em{display:block;font-style:normal;font-size:12px;color:#0F6B49;margin-top:6px}
+.process.five{grid-template-columns:repeat(5,1fr)}
+.chips.big{margin-top:20px}.chips.big .chip{font-size:14px;padding:7px 16px}
+.ar-type{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;font-family:'Noto Sans Arabic',var(--sans);margin-bottom:10px}
+.ar-big{font-size:96px;font-weight:700;line-height:1;color:#0F6B49}
+.ar-rows>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:8px 0;border-bottom:1px solid var(--border)}
+.ar-rows>div:last-child{border-bottom:0}
+.ar-rows small{font-family:var(--mono);font-size:11px;font-weight:400;color:var(--ink-3)}
+.swatch-row.six{grid-template-columns:repeat(6,1fr);margin-top:18px}
+.swatch-row.six .sw2 i{height:90px}
+.swatch-row.six .sw2 span{flex-direction:column;gap:2px;font-size:13px}
+.cs2-facts.four{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.split{grid-template-columns:1fr}.fixes{grid-template-columns:1fr 1fr}.process.five{grid-template-columns:1fr 1fr}.swatch-row.six{grid-template-columns:repeat(3,1fr)}.cs2-facts.four{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.ar-type{grid-template-columns:1fr}.process.five{grid-template-columns:1fr}}
+
+/* ═══ Material 3 buttons: full-rounded, state layers ═══ */
+.btn{position:relative;isolation:isolate;overflow:hidden;height:40px;padding:0 24px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:.1px;line-height:20px;gap:8px;justify-content:center;transition:box-shadow .2s,background-color .2s,color .2s;transform:none!important}
+.btn::after{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .2s;z-index:-1;border-radius:inherit;pointer-events:none}
+.btn:hover::after{opacity:.08}.btn:focus-visible::after{opacity:.1}.btn:active::after{opacity:.12}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn-primary{background:var(--accent);color:#fff;border:none}
+.btn-primary:hover{background:var(--accent);box-shadow:0 1px 2px rgba(0,0,0,.3),0 1px 3px 1px rgba(0,0,0,.15)}
+.btn-secondary{background:transparent;color:var(--accent);border:1px solid #79747E}
+.btn-secondary:hover{background:transparent}
+.btn-ghost{background:transparent;color:var(--accent);border:none;padding:0 12px}
+.btn-ghost:hover{background:transparent}
+.btn-danger{background:var(--red);color:#fff;border:none}
+.btn-danger:hover{background:var(--red);box-shadow:0 1px 2px rgba(0,0,0,.3),0 1px 3px 1px rgba(0,0,0,.15)}
+.btn-sm{height:32px;padding:0 16px;font-size:13px}
+.btn-lg{height:52px;padding:0 28px;font-size:16px;border-radius:999px}
+.btn-icon{width:40px;height:40px;padding:0;border-radius:50%}
+.btn:disabled,.btn[disabled]{background:rgba(28,27,31,.12)!important;color:rgba(28,27,31,.38)!important;border-color:transparent!important;box-shadow:none!important;cursor:not-allowed}
+.btn:disabled::after{display:none}
+.cta-band .btn-secondary{background:#fff;color:var(--ink);border-color:#fff}
+.nav-cta{border-radius:999px!important;height:36px;display:inline-flex!important;align-items:center;padding:0 18px!important;font-weight:500!important;letter-spacing:.1px!important;font-size:13px!important}
+.nav-links a{border-radius:999px}
+.seg{border-radius:999px;padding:3px}
+.seg button{border-radius:999px;padding:7px 16px;font-weight:500}
+@media(max-width:600px){.btn-lg{height:48px;font-size:15px}}
 </style>
 </head>
 <body>
-
-<!-- ══════════════════════════════════════
-     NAV
-══════════════════════════════════════ -->
+<a class="skip" href="#main">Skip to content</a>
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" onclick="goto('home')"><span>M</span>uhammad Ammad</a>
-
+    <a class="nav-logo" href="#home"><span>M</span>uhammad Ammad</a>
     <ul class="nav-links">
-      <li><a onclick="goto('home')" data-page="home">Home</a></li>
-
-      <li><a onclick="goto('design-system')" data-page="design-system">Design System</a></li>
-
-      <li><a onclick="goto('experience')" data-page="experience">Experience</a></li>
-      <li><a onclick="goto('skills')" data-page="skills">Skills &amp; Tools</a></li>
-      <li><a onclick="goto('about')" data-page="about">About</a></li>
-      <li><a onclick="goto('contact')" class="nav-cta">Hire Me</a></li>
+      <li><a href="#home" data-page="home">Home</a></li>
+      <li><a href="#work" data-page="work">Work</a></li>
+      <li><a href="#design-system" data-page="design-system">Design System</a></li>
+      <li><a href="#experience" data-page="experience">Experience</a></li>
+      <li><a href="#skills" data-page="skills">Skills &amp; Tools</a></li>
+      <li><a href="#about" data-page="about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
     </ul>
-
-    <button class="ham" id="hamBtn" onclick="toggleMobile()">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="ham" id="hamBtn" onclick="toggleMobile()" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<!-- mobile menu -->
+<div class="cs-progress" id="csProgress"></div>
 <div class="mobile-menu" id="mobileMenu">
-  <a onclick="goto('home');toggleMobile()">🏠 Home</a>
-  <a onclick="goto('design-system');toggleMobile()">🎨 Design System</a>
-  <a onclick="goto('experience');toggleMobile()">💼 Experience</a>
-  <a onclick="goto('skills');toggleMobile()">⚡ Skills &amp; Tools</a>
-  <a onclick="goto('about');toggleMobile()">👤 About</a>
-  <a onclick="goto('contact');toggleMobile()">✉️ Contact / Hire Me</a>
+  <a href="#home" data-page="home">Home</a>
+  <a href="#work" data-page="work">Work</a>
+  <a href="#design-system" data-page="design-system">Design System</a>
+  <a href="#experience" data-page="experience">Experience</a>
+  <a href="#skills" data-page="skills">Skills &amp; Tools</a>
+  <a href="#about" data-page="about">About</a>
+  <a href="#contact">Contact / Hire Me</a>
 </div>
-
-
-<!-- ══════════════════════════════════════
-     PAGE: HOME
-══════════════════════════════════════ -->
-<div class="page active" id="page-home">
+<main id="main">
+<div class="page" id="page-home">
   <section id="hero">
     <div class="wrap">
       <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center">
@@ -559,8 +1099,8 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
           <h1 class="hero-h1">Crafting <em>experiences</em><br>that users love<br>&amp; teams trust.</h1>
           <p class="hero-body">I'm Muhammad Ammad — turning complex problems into clean, intuitive interfaces. I build design systems that scale and products that feel effortless.</p>
           <div class="hero-actions">
-            <button class="btn btn-primary btn-lg" onclick="goto('skills')">Skills &amp; Tools</button>
-            <button class="btn btn-secondary btn-lg" onclick="goto('experience')">See Experience</button>
+            <a class="btn btn-primary btn-lg" href="#work">View work</a>
+            <a class="btn btn-secondary btn-lg" href="#contact">Get in touch</a>
           </div>
           <div class="hero-stats">
             <div><div class="hero-stat-num">8+</div><div class="hero-stat-lbl">Years Experience</div></div>
@@ -610,154 +1150,382 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
     }
   </style>
 
-  <!-- Industries -->
+
+  <div class="logo-strip"><div class="wrap"><p>Brands I’ve designed for</p><div class="logos"><span>RWG Mobile</span><span>Talk Home</span><span>Now Mobile</span><span>BookBetter</span><span>Priseen</span><span>Ballarat Legal</span></div></div></div>
+
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Industry Expertise</p>
-      <h2 class="sec-title">Domains I've worked in</h2>
-      <p class="sec-sub">Over 8 years, I've delivered UX solutions across a wide range of industries — adapting design thinking to each domain's unique users and challenges.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px">
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">🚗</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Transportation</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Fleet management &amp; booking platforms</div>
+      <div class="sec-head"><div><p class="eyebrow">Selected work</p><h2 class="sec-title">Case studies</h2></div><a class="btn btn-secondary" href="#work">All work</a></div>
+      <article class="feature">
+        <a class="stage bg-rwg" href="#case-rwg" aria-label="Open the RWG Mobile Wales case study"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">rwgmobile.wales</span></div><img src="images/rwg-hero.jpg" alt="RWG Mobile Wales homepage" width="1235" height="627" loading="lazy" class="zoomable " data-caption="RWG Mobile Wales homepage"></div></a>
+        <div class="feature-txt">
+          <span class="kicker">RWG Mobile Wales · Website, app & dashboard</span>
+          <h3>RWG Mobile Wales</h3>
+          <p>A UK SIM-only brand, designed end to end: live website, account dashboard and mobile app.</p>
+          <div class="chips"><span class="chip">Website</span><span class="chip">Design system</span><span class="chip">App</span></div>
+          <a class="arrow-link" href="#case-rwg">View case study</a>
         </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">🏨</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Hospitality</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Hotel &amp; venue booking experiences</div>
+      </article>
+      <article class="feature rev">
+        <a class="stage bg-thm" href="#case-thm" aria-label="Open the Talk Home Mobile case study"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">talk-home.com</span></div><img src="images/thm-alpha-hero.jpg" alt="Talk Home Mobile homepage" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Talk Home Mobile homepage"></div></a>
+        <div class="feature-txt">
+          <span class="kicker">Talk Home Mobile · Website, app & emails</span>
+          <h3>Talk Home Mobile</h3>
+          <p>Homepage redesigns, a customer dashboard, app onboarding and lifecycle emails for a UK MVNO.</p>
+          <div class="chips"><span class="chip">Redesign</span><span class="chip">App</span><span class="chip">Dashboard</span></div>
+          <a class="arrow-link" href="#case-thm">View case study</a>
         </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">🍔</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Food &amp; Beverage</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Ordering, menus &amp; delivery UX</div>
+      </article>
+      <article class="feature">
+        <a class="stage bg-now" href="#case-now" aria-label="Open the Now Mobile case study"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">nowmobile.co.uk</span></div><img src="images/now-hero.jpg" alt="Now Mobile homepage" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Now Mobile homepage"></div></a>
+        <div class="feature-txt">
+          <span class="kicker">Now Mobile · Website redesign</span>
+          <h3>Now Mobile</h3>
+          <p>Two bold directions for a Gen-Z pay-as-you-go brand: dark, electric green, built to convert.</p>
+          <div class="chips"><span class="chip">Redesign</span><span class="chip">Landing page</span><span class="chip">Telecom</span></div>
+          <a class="arrow-link" href="#case-now">View case study</a>
         </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">🏥</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Healthcare</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Patient portals &amp; clinical interfaces</div>
+      </article>
+      <article class="feature rev">
+        <a class="stage bg-mj" href="#case-majlis" aria-label="Open the Majlis case study"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">majlis.com</span></div><img src="images/mj-web-after.jpg" alt="Majlis homepage" width="1600" height="990" loading="lazy" class="zoomable " data-caption="Majlis homepage"></div></a>
+        <div class="feature-txt">
+          <span class="kicker">Majlis · Interview task · Web & app</span>
+          <h3>Majlis</h3>
+          <p>A UI audit and homepage redesign for an Arabic-only community platform, on web and mobile, in 48 hours.</p>
+          <div class="chips"><span class="chip">UX audit</span><span class="chip">Redesign</span><span class="chip">Arabic / RTL</span></div>
+          <a class="arrow-link" href="#case-majlis">View case study</a>
         </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">📢</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Advertising</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Campaign tools &amp; marketing platforms</div>
+      </article>
+      <article class="feature">
+        <a class="stage bg-bb" href="#case-bookbetter" aria-label="Open the BookBetter case study"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/bb-hero.jpg" alt="BookBetter homepage" width="1440" height="900" loading="lazy" class="zoomable " data-caption="BookBetter homepage"></div></a>
+        <div class="feature-txt">
+          <span class="kicker">BookBetter · Nimbus Consulting</span>
+          <h3>BookBetter</h3>
+          <p>A wellness and beauty booking platform: browse, compare and book services in a few taps.</p>
+          <div class="chips"><span class="chip">Product design</span><span class="chip">Marketplace</span><span class="chip">Web</span></div>
+          <a class="arrow-link" href="#case-bookbetter">View case study</a>
         </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">💻</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Technology</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">SaaS dashboards &amp; B2B tools</div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">🎓</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Education</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">LMS, e-learning &amp; publishing apps</div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">📡</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Telecommunications</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">MVNOs, SIM &amp; data bundle products</div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">🎮</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Gaming</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Game UI, icons &amp; 3D asset design</div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">🛍️</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">E-Commerce</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">eBay seller templates &amp; storefronts</div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">📦</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Consumer Goods</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Packaging, branding &amp; print design</div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 18px;text-align:center;transition:box-shadow .2s,transform .2s;cursor:default" onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.12)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-          <div style="font-size:30px;margin-bottom:10px">📰</div>
-          <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Publishing</div>
-          <div style="font-size:12px;color:var(--ink-3);line-height:1.4">Digital media &amp; content platforms</div>
-        </div>
-
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- About Me -->
   <section class="section">
     <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
-        <div>
-          <p class="eyebrow">About Me</p>
-          <h2 class="sec-title">Muhammad Ammad</h2>
-          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:14px;font-size:15px">A highly skilled UI/UX Design Professional with over eight years of experience, specialising in user experience design, web design, and digital solutions. Adept at creating innovative and user-centric designs that enhance engagement and functionality.</p>
-          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:14px;font-size:15px">Proven expertise in delivering strategic design solutions across diverse industries — including transportation, hospitality, food, healthcare, advertising, marketing, technology, education, publishing, and telecommunications.</p>
-          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:28px;font-size:15px">Recognised for adaptability, creativity, and a results-driven approach to crafting seamless digital experiences. Currently working with UK-based clients at Now Software.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <button class="btn btn-primary" onclick="goto('experience')">View Experience</button>
-            <button class="btn btn-secondary" onclick="goto('contact')">Get in touch</button>
+      <div class="sec-head"><div><p class="eyebrow">More work</p><h2 class="sec-title">Websites across industries</h2></div><span class="hint">Click any design to view it full screen.</span></div>
+      <div class="more-grid" data-gallery><figure class="more">
+          <div class="stage bg-ball more-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/ballarat.jpg" alt="Ballarat Legal Resolution" width="1440" height="1021" loading="lazy" class="zoomable " data-caption="Ballarat Legal Resolution"></div></div>
+          <figcaption><b>Ballarat Legal Resolution</b><span>Law firm website</span></figcaption>
+        </figure><figure class="more">
+          <div class="stage bg-pri more-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/priseen.jpg" alt="Priseen" width="1440" height="1100" loading="lazy" class="zoomable " data-caption="Priseen"></div></div>
+          <figcaption><b>Priseen</b><span>Business engagement landing page</span></figcaption>
+        </figure><figure class="more">
+          <div class="stage bg-cow more-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/cowork.jpg" alt="Find a Co-Working Space" width="1440" height="900" loading="lazy" class="zoomable " data-caption="Find a Co-Working Space"></div></div>
+          <figcaption><b>Find a Co-Working Space</b><span>Office booking website</span></figcaption>
+        </figure></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Try it</p>
+      <h2 class="sec-title">Three telecom brands, one system mindset</h2>
+      <p class="sec-sub">Switch brands to see each design system’s colours and card style on the same component.</p>
+      <div class="brandlab" data-brandlab>
+        <div class="bl-side">
+          <div class="seg" role="group" aria-label="Choose a brand">
+            <button type="button" data-brand="thm" aria-pressed="false">Talk Home</button>
+            <button type="button" data-brand="now" aria-pressed="false">Now Mobile</button>
+            <button type="button" data-brand="rwg" aria-pressed="true">RWG</button>
           </div>
+          <h3 data-bl="name">RWG Mobile Wales</h3>
+          <p class="bl-note" data-bl="sig">Clean white cards on navy, with red reserved for actions and green for status.</p>
+          <div class="bl-tokens" data-bl="tokens"></div>
+          <p class="bl-meta">Typeface: <b data-bl="font">Poppins</b></p>
+          <p class="bl-meta" style="margin-top:10px"><a href="#case-rwg" data-bl="link" style="color:var(--accent);font-weight:600;text-decoration:none">Read the RWG case study</a></p>
         </div>
-        <div class="profile-card">
-          <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)">
-            <span class="avatar avatar-lg" style="background:var(--accent)">MA</span>
-            <div>
-              <div style="font-weight:700;font-size:17px">Muhammad Ammad</div>
-              <div style="font-size:13px;color:var(--accent);font-weight:600">Senior UI/UX Designer</div>
-              <div style="margin-top:6px"><span class="badge badge-green"><span class="badge-dot"></span>Open to work</span></div>
+        <div>
+          <div class="bl-stage" data-brand="rwg">
+            <div class="bl-glow"></div>
+            <div class="bl-top"><span class="bl-brand" data-bl="word">RWG</span><span class="bl-navdots"><span>Plans</span><span>Roaming</span><span>Help</span></span></div>
+            <div class="bl-head">Pay as you go, your way</div>
+            <div class="bl-cards">
+              <div class="bl-card"><span class="t">Popular</span><div class="n">Plan name</div><div class="l"></div><div class="l s"></div><div class="b">Choose plan</div></div>
+              <div class="bl-card"><span class="t">Roaming</span><div class="n">Travel add-on</div><div class="l"></div><div class="b">See details</div></div>
             </div>
           </div>
-          <div class="contact-row"><div class="contact-icon">📧</div><div><div class="contact-lbl">Email</div><div class="contact-val"><a href="mailto:ammad2090@gmail.com">ammad2090@gmail.com</a></div></div></div>
-          <div class="contact-row"><div class="contact-icon">📱</div><div><div class="contact-lbl">Phone</div><div class="contact-val">+92 321 9943774 · +92 335 1975521</div></div></div>
-          <div class="contact-row"><div class="contact-icon">💼</div><div><div class="contact-lbl">LinkedIn</div><div class="contact-val"><a href="https://linkedin.com/in/m-ammad-uiux-designer" target="_blank">Check My LinkedIn Profile</a></div></div></div>
-          <div class="contact-row"><div class="contact-icon">🎨</div><div><div class="contact-lbl">Behance</div><div class="contact-val"><a href="https://behance.net/ammad2090" target="_blank">Check My Behance Profile</a></div></div></div>
-          <div class="contact-row"><div class="contact-icon">🏀</div><div><div class="contact-lbl">Dribbble</div><div class="contact-val"><a href="https://dribbble.com/ammad2090" target="_blank">Check My Dribbble Profile</a></div></div></div>
-          <div class="contact-row"><div class="contact-icon">📍</div><div><div class="contact-lbl">Location</div><div class="contact-val">Pakistan · Available remotely</div></div></div>
-          <div style="margin-top:20px">
-            <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="goto('contact')">Hire Me &rarr;</button>
-          </div>
+          <p class="bl-caption">Same markup in every state. Only the brand’s tokens and its signature card style change. Click a colour to copy its hex.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How I work</p>
+      <h2 class="sec-title">Requirements first, pixels second</h2>
+      <ol class="process">
+        <li><b>Extract the brief</b><span>Goal, audience, content, constraints, success criteria.</span></li>
+        <li><b>Close the gaps</b><span>One clarifying question per gap.</span></li>
+        <li><b>Write the design brief</b><span>Agreed before any wireframe.</span></li>
+        <li><b>Design and ship</b><span>Figma to production-ready UI.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-band">
+        <div><h2>Hiring a product designer?</h2><p>Open to UI/UX and Product Designer roles, remote or on-site in Islamabad.</p></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary btn-lg" href="#contact">Get in touch</a><a class="btn btn-secondary btn-lg" href="#experience">Experience</a></div>
+      </div>
+    </div>
+  </section>
   <footer>
     <div class="wrap">
       <div class="footer-name">Muhammad Ammad</div>
       <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
       <div class="footer-links">
-        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank">LinkedIn</a>
-        <a href="https://dribbble.com/ammad2090" target="_blank">Dribbble</a>
-        <a href="https://behance.net/ammad2090" target="_blank">Behance</a>
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
         <a href="mailto:ammad2090@gmail.com">Email</a>
       </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
     </div>
   </footer>
 </div>
-
-
-<!-- ══════════════════════════════════════
-     PAGE: DESIGN SYSTEM (Tokens)
-══════════════════════════════════════ -->
+<div class="page" id="page-work">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Work</p>
+      <h2 class="sec-title">Case studies</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-btn" data-filter="telecom" aria-pressed="false">Telecom</button>
+        <button type="button" class="filter-btn" data-filter="design-system" aria-pressed="false">Design systems</button>
+        <button type="button" class="filter-btn" data-filter="redesign" aria-pressed="false">Redesigns</button>
+        <button type="button" class="filter-btn" data-filter="product" aria-pressed="false">Product design</button>
+        <span class="filter-count" aria-live="polite" data-count></span>
+      </div>
+      <div class="tile-grid" data-workgrid>
+        <a class="tile" href="#case-rwg" data-tags="design-system frontend telecom">
+          <div class="stage bg-rwg tile-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">rwgmobile.wales</span></div><img src="images/rwg-hero.jpg" alt="RWG Mobile Wales" width="1235" height="627" loading="lazy" class="zoomable " data-caption="RWG Mobile Wales"></div></div>
+          <div class="tile-txt"><h3>RWG Mobile Wales</h3><p>A UK SIM-only brand, designed end to end: live website, account dashboard and mobile app.</p><div class="chips"><span class="chip">Website</span><span class="chip">Design system</span><span class="chip">App</span></div></div>
+        </a>
+        <a class="tile" href="#case-thm" data-tags="design-system redesign telecom">
+          <div class="stage bg-thm tile-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">talk-home.com</span></div><img src="images/thm-alpha-hero.jpg" alt="Talk Home Mobile" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Talk Home Mobile"></div></div>
+          <div class="tile-txt"><h3>Talk Home Mobile</h3><p>Homepage redesigns, a customer dashboard, app onboarding and lifecycle emails for a UK MVNO.</p><div class="chips"><span class="chip">Redesign</span><span class="chip">App</span><span class="chip">Dashboard</span></div></div>
+        </a>
+        <a class="tile" href="#case-now" data-tags="redesign telecom">
+          <div class="stage bg-now tile-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">nowmobile.co.uk</span></div><img src="images/now-hero.jpg" alt="Now Mobile" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Now Mobile"></div></div>
+          <div class="tile-txt"><h3>Now Mobile</h3><p>Two bold directions for a Gen-Z pay-as-you-go brand: dark, electric green, built to convert.</p><div class="chips"><span class="chip">Redesign</span><span class="chip">Landing page</span><span class="chip">Telecom</span></div></div>
+        </a>
+        <a class="tile" href="#case-majlis" data-tags="redesign product">
+          <div class="stage bg-mj tile-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">majlis.com</span></div><img src="images/mj-web-after.jpg" alt="Majlis" width="1600" height="990" loading="lazy" class="zoomable " data-caption="Majlis"></div></div>
+          <div class="tile-txt"><h3>Majlis</h3><p>A UI audit and homepage redesign for an Arabic-only community platform, on web and mobile, in 48 hours.</p><div class="chips"><span class="chip">UX audit</span><span class="chip">Redesign</span><span class="chip">Arabic / RTL</span></div></div>
+        </a>
+        <a class="tile" href="#case-bookbetter" data-tags="product">
+          <div class="stage bg-bb tile-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/bb-hero.jpg" alt="BookBetter" width="1440" height="900" loading="lazy" class="zoomable " data-caption="BookBetter"></div></div>
+          <div class="tile-txt"><h3>BookBetter</h3><p>A wellness and beauty booking platform: browse, compare and book services in a few taps.</p><div class="chips"><span class="chip">Product design</span><span class="chip">Marketplace</span><span class="chip">Web</span></div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">More work</p>
+      <h2 class="sec-title">Other websites</h2>
+      <p class="sec-sub">Click a design to view it full screen.</p>
+      <div class="more-grid" data-gallery><figure class="more">
+          <div class="stage bg-ball more-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/ballarat.jpg" alt="Ballarat Legal Resolution" width="1440" height="1021" loading="lazy" class="zoomable " data-caption="Ballarat Legal Resolution"></div></div>
+          <figcaption><b>Ballarat Legal Resolution</b><span>Law firm website</span></figcaption>
+        </figure><figure class="more">
+          <div class="stage bg-pri more-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/priseen.jpg" alt="Priseen" width="1440" height="1100" loading="lazy" class="zoomable " data-caption="Priseen"></div></div>
+          <figcaption><b>Priseen</b><span>Business engagement landing page</span></figcaption>
+        </figure><figure class="more">
+          <div class="stage bg-cow more-stage"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/cowork.jpg" alt="Find a Co-Working Space" width="1440" height="900" loading="lazy" class="zoomable " data-caption="Find a Co-Working Space"></div></div>
+          <figcaption><b>Find a Co-Working Space</b><span>Office booking website</span></figcaption>
+        </figure></div>
+    </div>
+  </section>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
+</div>
+<div class="page" id="page-case-rwg" data-case>
+  <header class="cs2-hero bg-rwg">
+    <div class="wrap">
+      <div class="breadcrumb on-dark" role="navigation" aria-label="Breadcrumb"><span class="breadcrumb-item"><a href="#work">Work</a></span><span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">RWG Mobile Wales</span></div>
+      <h1>RWG Mobile Wales</h1>
+      <p class="cs2-intro">Website, account dashboard and mobile app for a Welsh SIM-only brand, all built on a design system I created.</p>
+      <div class="cs2-hero-img"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">rwgmobile.wales</span></div><img src="images/rwg-hero.jpg" alt="RWG Mobile Wales homepage" width="1235" height="627" class="zoomable " data-caption="RWG Mobile Wales homepage"></div></div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="cs2-meta"><dl><div><dt>Role</dt><dd>Design system, UI/UX</dd></div><div><dt>Scope</dt><dd>Website, dashboard, app</dd></div><div><dt>Stack</dt><dd>Figma, Next.js</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><a class="btn btn-secondary" href="https://www.rwgmobile.wales" target="_blank" rel="noopener">Visit live site ↗</a></div>
+    <div data-gallery><section class="cs2-sec" id="rwg-site"><div class="cs2-head"><h2>Live website</h2><p>Plans first: every plan visible on the homepage, with price and buy action on the right of each card.</p></div><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">rwgmobile.wales</span></div><img src="images/rwg-hero.jpg" alt="Homepage: hero and plan list" width="1235" height="627" loading="lazy" class="zoomable " data-caption="Homepage: hero and plan list"></div><figcaption>Homepage: hero and plan list</figcaption></figure><div class="shots-2"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/rwg-why.jpg" alt="Why switch: six benefits in a calm grid" width="1235" height="627" loading="lazy" class="zoomable " data-caption="Why switch: six benefits in a calm grid"></div><figcaption>Why switch: six benefits in a calm grid</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/rwg-reviews.jpg" alt="Reviews on a bold red-to-green band" width="1235" height="627" loading="lazy" class="zoomable " data-caption="Reviews on a bold red-to-green band"></div><figcaption>Reviews on a bold red-to-green band</figcaption></figure></div></section><section class="cs2-sec" id="rwg-roaming"><div class="cs2-head"><h2>Roaming</h2><p>A destination picker up top, then simple setup steps for iPhone and Android.</p></div><div class="shots-2"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/rwg-roaming.jpg" alt="Roaming: choose a destination" width="1235" height="627" loading="lazy" class="zoomable " data-caption="Roaming: choose a destination"></div><figcaption>Roaming: choose a destination</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/rwg-roaming-2.jpg" alt="Roaming: activation steps" width="1235" height="627" loading="lazy" class="zoomable " data-caption="Roaming: activation steps"></div><figcaption>Roaming: activation steps</figcaption></figure></div></section><section class="cs2-sec" id="rwg-dashboard"><div class="cs2-head"><h2>Account dashboard</h2><p>Balance, subscriptions and new deals on one screen after login.</p></div><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/rwg-dashboard.jpg" alt="Dashboard: balance, subscriptions and deals" width="1600" height="1000" loading="lazy" class="zoomable " data-caption="Dashboard: balance, subscriptions and deals"></div><figcaption>Dashboard: balance, subscriptions and deals</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/rwg-overview.jpg" alt="Logged-in homepage: bundles for every lifestyle" width="1600" height="1000" loading="lazy" class="zoomable " data-caption="Logged-in homepage: bundles for every lifestyle"></div><figcaption>Logged-in homepage: bundles for every lifestyle</figcaption></figure></section><section class="cs2-sec" id="rwg-app"><div class="cs2-head"><h2>Mobile app</h2><p>The same system in the app: home, menu and account screens.</p></div><div class="stage phone-stage bg-rwg"><div class="phones"><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/rwg-app-1.jpg" alt="Home" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Home"></div></div></div><figcaption>Home</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/rwg-app-2.jpg" alt="Menu" width="732" height="1586" loading="lazy" class="zoomable " data-caption="Menu"></div></div></div><figcaption>Menu</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/rwg-app-3.jpg" alt="My account" width="860" height="1863" loading="lazy" class="zoomable " data-caption="My account"></div></div></div><figcaption>My account</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/rwg-app-4.jpg" alt="Edit profile" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Edit profile"></div></div></div><figcaption>Edit profile</figcaption></figure></div></div></section><section class="cs2-sec" id="rwg-emails"><div class="cs2-head"><h2>Transactional emails</h2><p>Order, top-up and payment emails that match the website and app.</p></div><div class="stage pad-stage bg-rwg"><div class="pads"><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/rwg-mail-sim.jpg" alt="SIM order confirmation" width="900" height="1295" loading="lazy" class="zoomable " data-caption="SIM order confirmation" data-full="images/rwg-mail-sim-full.jpg"></div></div></div><figcaption>SIM order confirmation</figcaption></figure><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/rwg-mail-topup.jpg" alt="Top-up successful" width="900" height="1295" loading="lazy" class="zoomable " data-caption="Top-up successful" data-full="images/rwg-mail-topup-full.jpg"></div></div></div><figcaption>Top-up successful</figcaption></figure><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/rwg-mail-expiry.jpg" alt="Card expiring soon" width="900" height="1295" loading="lazy" class="zoomable " data-caption="Card expiring soon" data-full="images/rwg-mail-expiry-full.jpg"></div></div></div><figcaption>Card expiring soon</figcaption></figure></div></div></section><section class="cs2-sec" id="rwg-system"><div class="cs2-head"><h2>Design system</h2><p>A full system I built in Claude Design from the RWG Brand Book: tokens, components and a website UI kit.</p></div><p class="ds-src">Source: RWG Brand Book V.02 · Poppins · 20+ components</p><div class="ds-grid"><figure class="ds-card s3"><img src="images/rwg-ds-logo.jpg" alt="Logo and mark" width="1400" height="420" loading="lazy" class="zoomable " data-caption="Logo and mark"><figcaption>Logo and mark</figcaption></figure><figure class="ds-card s3"><img src="images/rwg-ds-primary.jpg" alt="Primary palette" width="1400" height="394" loading="lazy" class="zoomable " data-caption="Primary palette"><figcaption>Primary palette</figcaption></figure><figure class="ds-card s3"><img src="images/rwg-ds-secondary.jpg" alt="Secondary palette" width="1400" height="360" loading="lazy" class="zoomable " data-caption="Secondary palette"><figcaption>Secondary palette</figcaption></figure><figure class="ds-card s3"><img src="images/rwg-ds-type.jpg" alt="Poppins: family and weights" width="1400" height="838" loading="lazy" class="zoomable " data-caption="Poppins: family and weights"><figcaption>Poppins: family and weights</figcaption></figure><figure class="ds-card s3"><img src="images/rwg-ds-headings.jpg" alt="Heading scale" width="1400" height="872" loading="lazy" class="zoomable " data-caption="Heading scale"><figcaption>Heading scale</figcaption></figure><figure class="ds-card s3"><img src="images/rwg-ds-forms.jpg" alt="Buttons, inputs and switches" width="1400" height="1086" loading="lazy" class="zoomable " data-caption="Buttons, inputs and switches"><figcaption>Buttons, inputs and switches</figcaption></figure><figure class="ds-card s6"><img src="images/rwg-ds-plancard.jpg" alt="Plan card component" width="1400" height="501" loading="lazy" class="zoomable " data-caption="Plan card component"><figcaption>Plan card component</figcaption></figure><figure class="ds-card s6"><img src="images/rwg-ds-feature.jpg" alt="Feature cards" width="1400" height="731" loading="lazy" class="zoomable " data-caption="Feature cards"><figcaption>Feature cards</figcaption></figure></div><div class="stage bg-rwg ds-kit"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/rwg-ds-kit.jpg" alt="Website UI kit, assembled entirely from the system’s components" width="1600" height="950" loading="lazy" class="zoomable " data-caption="Website UI kit, assembled entirely from the system’s components"></div></div><p class="hint" style="margin-top:10px">Website UI kit, assembled entirely from the system’s components</p></section></div>
+    <div class="cs-pager">
+      <a href="#case-bookbetter"><small>Previous</small><b>BookBetter</b></a>
+      <a href="#case-thm"><small>Next</small><b>Talk Home Mobile</b></a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
+</div>
+<div class="page" id="page-case-thm" data-case>
+  <header class="cs2-hero bg-thm">
+    <div class="wrap">
+      <div class="breadcrumb on-dark" role="navigation" aria-label="Breadcrumb"><span class="breadcrumb-item"><a href="#work">Work</a></span><span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">Talk Home Mobile</span></div>
+      <h1>Talk Home Mobile</h1>
+      <p class="cs2-intro">Homepage redesigns, a customer dashboard, app onboarding and lifecycle emails for a UK pay-as-you-go brand.</p>
+      <div class="cs2-hero-img"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">talk-home.com</span></div><img src="images/thm-alpha-hero.jpg" alt="Talk Home Mobile homepage" width="1600" height="958" class="zoomable " data-caption="Talk Home Mobile homepage"></div></div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="cs2-meta"><dl><div><dt>Role</dt><dd>UI/UX, design system</dd></div><div><dt>Scope</dt><dd>Website, dashboard, app, email</dd></div><div><dt>Stack</dt><dd>Figma, HTML/CSS/JS</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><a class="btn btn-secondary" href="https://mobile.talk-home.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
+    <div data-gallery><section class="cs2-sec" id="thm-redesign"><div class="cs2-head"><h2>Homepage directions</h2><p>Compare the live homepage with two redesign concepts I designed.</p></div><div class="cmp" data-compare><div class="seg" role="group" aria-label="Homepage version"><button type="button" data-cmp="live" aria-pressed="true">Live site</button><button type="button" data-cmp="alpha" aria-pressed="false">Alpha redesign</button><button type="button" data-cmp="dark" aria-pressed="false">Dark concept</button></div><figure class="cmp-panel" data-cmp-panel="live"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-live-hero.jpg" alt="Live site: 100GB for £10 hero" width="1235" height="627" loading="lazy" class="zoomable " data-caption="Live site: 100GB for £10 hero"></div><figcaption>Live site: 100GB for £10 hero</figcaption></figure><figure class="cmp-panel" data-cmp-panel="alpha" hidden><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-alpha-hero.jpg" alt="Alpha: send top-ups in seconds" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Alpha: send top-ups in seconds"></div><figcaption>Alpha: send top-ups in seconds</figcaption></figure><figure class="cmp-panel" data-cmp-panel="dark" hidden><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-dark-hero.jpg" alt="Dark concept: international calls & top-ups" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Dark concept: international calls & top-ups"></div><figcaption>Dark concept: international calls & top-ups</figcaption></figure></div><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-alpha-sections.jpg" alt="Alpha: three ways to reach home, how it works, reviews" width="1600" height="1042" loading="lazy" class="zoomable " data-caption="Alpha: three ways to reach home, how it works, reviews"></div><figcaption>Alpha: three ways to reach home, how it works, reviews</figcaption></figure></section><section class="cs2-sec" id="thm-pages"><div class="cs2-head"><h2>Product pages</h2><p>Each service gets its own page: mobile top-up, international calls and gift cards.</p></div><div class="shots-3"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-topup-page.jpg" alt="Mobile top-up by country" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Mobile top-up by country"></div><figcaption>Mobile top-up by country</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-calls-page.jpg" alt="Cheap international calls" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Cheap international calls"></div><figcaption>Cheap international calls</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-giftcards-page.jpg" alt="Gift cards" width="1600" height="958" loading="lazy" class="zoomable " data-caption="Gift cards"></div><figcaption>Gift cards</figcaption></figure></div></section><section class="cs2-sec" id="thm-live"><div class="cs2-head"><h2>Live website</h2><p>Plan cards with clear savings, plus an app download block.</p></div><div class="shots-2"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-live-plans.jpg" alt="12-month plans with ‘Extra data’ offers" width="1235" height="627" loading="lazy" class="zoomable " data-caption="12-month plans with ‘Extra data’ offers"></div><figcaption>12-month plans with ‘Extra data’ offers</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-live-app.jpg" alt="App promotion and footer" width="1235" height="627" loading="lazy" class="zoomable " data-caption="App promotion and footer"></div><figcaption>App promotion and footer</figcaption></figure></div></section><section class="cs2-sec" id="thm-dashboard"><div class="cs2-head"><h2>Customer dashboard</h2><p>Top-ups, bundles, calling rates and recent activity in one view.</p></div><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-dashboard.jpg" alt="Dashboard: balance, bundles, transactions" width="1600" height="1000" loading="lazy" class="zoomable " data-caption="Dashboard: balance, bundles, transactions"></div><figcaption>Dashboard: balance, bundles, transactions</figcaption></figure></section><section class="cs2-sec" id="thm-app"><div class="cs2-head"><h2>App onboarding</h2><p>Photo-led onboarding, then a fast path to the first top-up.</p></div><div class="stage phone-stage bg-thm"><div class="phones"><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-onb-1.jpg" alt="Stay close" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Stay close"></div></div></div><figcaption>Stay close</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-onb-2.jpg" alt="Affordable calls" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Affordable calls"></div></div></div><figcaption>Affordable calls</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-onb-3.jpg" alt="Top up 500+ networks" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Top up 500+ networks"></div></div></div><figcaption>Top up 500+ networks</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-onb-4.jpg" alt="Call without limits" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Call without limits"></div></div></div><figcaption>Call without limits</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-onb-5.jpg" alt="Simple and secure" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Simple and secure"></div></div></div><figcaption>Simple and secure</figcaption></figure></div></div><div class="stage phone-stage bg-thm"><div class="phones"><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-topup-1.jpg" alt="Bundles and credit" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Bundles and credit"></div></div></div><figcaption>Bundles and credit</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-topup-2.jpg" alt="Choose an amount" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Choose an amount"></div></div></div><figcaption>Choose an amount</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-topup-3.jpg" alt="Credit selected" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Credit selected"></div></div></div><figcaption>Credit selected</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/thm-topup-4.jpg" alt="Calling rates" width="860" height="1863" loading="lazy" class="zoomable " data-caption="Calling rates"></div></div></div><figcaption>Calling rates</figcaption></figure></div></div></section><section class="cs2-sec" id="thm-system"><div class="cs2-head"><h2>Design system</h2><p>A full system I built in Claude Design from the Talk Home Brand Guidelines: tokens, components and UI kits.</p></div><p class="ds-src">Source: Talk Home Brand Guidelines 2021/22 · Poppins · light and dark themes</p><div class="ds-grid"><figure class="ds-card s3"><img src="images/thm-ds-logo.jpg" alt="Logo on light and dark" width="1400" height="400" loading="lazy" class="zoomable " data-caption="Logo on light and dark"><figcaption>Logo on light and dark</figcaption></figure><figure class="ds-card s3"><img src="images/thm-ds-primary.jpg" alt="Primary: Sky Blue scale" width="1400" height="300" loading="lazy" class="zoomable " data-caption="Primary: Sky Blue scale"><figcaption>Primary: Sky Blue scale</figcaption></figure><figure class="ds-card s3"><img src="images/thm-ds-navylime.jpg" alt="Navy and Lime" width="1400" height="352" loading="lazy" class="zoomable " data-caption="Navy and Lime"><figcaption>Navy and Lime</figcaption></figure><figure class="ds-card s3"><img src="images/thm-ds-weights.jpg" alt="Poppins weights" width="1400" height="300" loading="lazy" class="zoomable " data-caption="Poppins weights"><figcaption>Poppins weights</figcaption></figure><figure class="ds-card s3"><img src="images/thm-ds-display.jpg" alt="Display and headings" width="1400" height="502" loading="lazy" class="zoomable " data-caption="Display and headings"><figcaption>Display and headings</figcaption></figure><figure class="ds-card s3"><img src="images/thm-ds-buttons.jpg" alt="Buttons" width="1400" height="696" loading="lazy" class="zoomable " data-caption="Buttons"><figcaption>Buttons</figcaption></figure><figure class="ds-card s3"><img src="images/thm-ds-display2.jpg" alt="Cards, badges and avatars" width="1400" height="674" loading="lazy" class="zoomable " data-caption="Cards, badges and avatars"><figcaption>Cards, badges and avatars</figcaption></figure><figure class="ds-card s3"><img src="images/thm-ds-forms.jpg" alt="Forms" width="1400" height="680" loading="lazy" class="zoomable " data-caption="Forms"><figcaption>Forms</figcaption></figure></div><div class="stage bg-thm ds-kit"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/thm-ds-kit.jpg" alt="Talk Home Mobile web UI kit, built from the system’s components" width="1600" height="950" loading="lazy" class="zoomable " data-caption="Talk Home Mobile web UI kit, built from the system’s components"></div></div><p class="hint" style="margin-top:10px">Talk Home Mobile web UI kit, built from the system’s components</p></section><section class="cs2-sec" id="thm-emails"><div class="cs2-head"><h2>Lifecycle emails</h2><p>Welcome, verification and receipt emails in the same visual language.</p></div><div class="stage pad-stage bg-thm"><div class="pads"><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/thm-mail-verify.jpg" alt="Welcome: verify email" width="900" height="1295" loading="lazy" class="zoomable " data-caption="Welcome: verify email" data-full="images/thm-mail-verify-full.jpg"></div></div></div><figcaption>Welcome: verify email</figcaption></figure><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/thm-mail-verified.jpg" alt="Email verified" width="900" height="1295" loading="lazy" class="zoomable " data-caption="Email verified" data-full="images/thm-mail-verified-full.jpg"></div></div></div><figcaption>Email verified</figcaption></figure><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/thm-mail-mobile.jpg" alt="Mobile top-up receipt" width="900" height="1295" loading="lazy" class="zoomable " data-caption="Mobile top-up receipt" data-full="images/thm-mail-mobile-full.jpg"></div></div></div><figcaption>Mobile top-up receipt</figcaption></figure><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/thm-mail-account.jpg" alt="Account top-up receipt" width="900" height="1295" loading="lazy" class="zoomable " data-caption="Account top-up receipt" data-full="images/thm-mail-account-full.jpg"></div></div></div><figcaption>Account top-up receipt</figcaption></figure><figure class="pad-cell"><div class="ipad"><i class="btn-t"></i><i class="btn-r v1"></i><i class="btn-r v2"></i><span class="cam"></span><div class="pad-bezel"><div class="pad-screen"><img src="images/thm-mail-gift.jpg" alt="Gift card purchase" width="900" height="1295" loading="lazy" class="zoomable " data-caption="Gift card purchase" data-full="images/thm-mail-gift-full.jpg"></div></div></div><figcaption>Gift card purchase</figcaption></figure></div></div></section></div>
+    <div class="cs-pager">
+      <a href="#case-rwg"><small>Previous</small><b>RWG Mobile Wales</b></a>
+      <a href="#case-now"><small>Next</small><b>Now Mobile</b></a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
+</div>
+<div class="page" id="page-case-now" data-case>
+  <header class="cs2-hero bg-now">
+    <div class="wrap">
+      <div class="breadcrumb on-dark" role="navigation" aria-label="Breadcrumb"><span class="breadcrumb-item"><a href="#work">Work</a></span><span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">Now Mobile</span></div>
+      <h1>Now Mobile</h1>
+      <p class="cs2-intro">A bolder, Gen-Z homepage for a UK pay-as-you-go brand, explored in two versions.</p>
+      <div class="cs2-hero-img"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">nowmobile.co.uk</span></div><img src="images/now-hero.jpg" alt="Now Mobile homepage" width="1600" height="958" class="zoomable " data-caption="Now Mobile homepage"></div></div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="cs2-meta"><dl><div><dt>Role</dt><dd>Redesign, UI design</dd></div><div><dt>Scope</dt><dd>Homepage, roaming page</dd></div><div><dt>Stack</dt><dd>Figma, Figma Make</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></div>
+    <div data-gallery><section class="cs2-sec" id="now-versions"><div class="cs2-head"><h2>Two directions</h2><p>Switch between the two homepage versions I designed.</p></div><div class="cmp" data-compare><div class="seg" role="group" aria-label="Homepage version"><button type="button" data-cmp="v1" aria-pressed="true">Version 1</button><button type="button" data-cmp="v2" aria-pressed="false">Version 2</button></div><figure class="cmp-panel" data-cmp-panel="v1"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/now-hero.jpg" alt="V1: ‘Mobile that’s always yours.’" width="1600" height="958" loading="lazy" class="zoomable " data-caption="V1: ‘Mobile that’s always yours.’"></div><figcaption>V1: ‘Mobile that’s always yours.’</figcaption></figure><figure class="cmp-panel" data-cmp-panel="v2" hidden><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/now-v2-hero.jpg" alt="V2: ‘Mobile that’s crystal clear.’" width="1600" height="959" loading="lazy" class="zoomable " data-caption="V2: ‘Mobile that’s crystal clear.’"></div><figcaption>V2: ‘Mobile that’s crystal clear.’</figcaption></figure></div></section><section class="cs2-sec" id="now-plans"><div class="cs2-head"><h2>Plans and top-up</h2><p>A data slider finds the right plan; quick amounts make top-up one tap.</p></div><div class="shots-2"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/now-plans.jpg" alt="Plan finder with data slider" width="1600" height="1000" loading="lazy" class="zoomable " data-caption="Plan finder with data slider"></div><figcaption>Plan finder with data slider</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/now-v2-topup.jpg" alt="Quick top-up amounts" width="1600" height="1001" loading="lazy" class="zoomable " data-caption="Quick top-up amounts"></div><figcaption>Quick top-up amounts</figcaption></figure></div></section><section class="cs2-sec" id="now-proof"><div class="cs2-head"><h2>Trust and app</h2><p>Benefits, social proof and the app, in the same electric green.</p></div><div class="shots-2"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/now-built.jpg" alt="Built different, stats and reviews" width="1600" height="1000" loading="lazy" class="zoomable " data-caption="Built different, stats and reviews"></div><figcaption>Built different, stats and reviews</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/now-app.jpg" alt="App section and final call to action" width="1600" height="1000" loading="lazy" class="zoomable " data-caption="App section and final call to action"></div><figcaption>App section and final call to action</figcaption></figure></div></section><section class="cs2-sec" id="now-system"><div class="cs2-head"><h2>Design system</h2><p>Dark base, two greens, two typefaces.</p></div><div class="swatch-row"><button type="button" class="sw2" data-copy="#1BB127"><i style="background:#1BB127"></i><span>Green<code>#1BB127</code></span></button><button type="button" class="sw2" data-copy="#B6FF3C"><i style="background:#B6FF3C"></i><span>Lime<code>#B6FF3C</code></span></button><button type="button" class="sw2" data-copy="#0B0F0D"><i style="background:#0B0F0D"></i><span>Near-black<code>#0B0F0D</code></span></button></div><p class="hint">Typefaces: Space Grotesk and Poppins.</p></section></div>
+    <div class="cs-pager">
+      <a href="#case-thm"><small>Previous</small><b>Talk Home Mobile</b></a>
+      <a href="#case-majlis"><small>Next</small><b>Majlis</b></a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
+</div>
+<div class="page" id="page-case-majlis" data-case>
+  <header class="cs2-hero bg-mj">
+    <div class="wrap">
+      <div class="breadcrumb on-dark" role="navigation" aria-label="Breadcrumb"><span class="breadcrumb-item"><a href="#work">Work</a></span><span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">Majlis</span></div>
+      <h1>Majlis</h1>
+      <p class="cs2-intro">A UI audit and homepage redesign for an Arabic-only community platform where people join communities, post, vote and discuss.</p>
+      <div class="cs2-hero-img"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">majlis.com</span></div><img src="images/mj-web-after.jpg" alt="Majlis homepage" width="1600" height="990" class="zoomable " data-caption="Majlis homepage"></div></div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="cs2-meta"><dl><div><dt>Role</dt><dd>UI/UX Designer</dd></div><div><dt>Scope</dt><dd>Audit + homepage redesign</dd></div><div><dt>Platforms</dt><dd>Website and app</dd></div><div><dt>Tools</dt><dd>Figma</dd></div><div><dt>Timeline</dt><dd>48 hours</dd></div></dl><a class="btn btn-secondary" href="https://majlis.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
+    <div data-gallery><section class="cs2-sec" id="majlis-problem"><div class="cs2-head"><h2>The problem</h2><p>The right features, but hard to use. The current product feels unfinished and tiring.</p></div><div class="split"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">majlis.com</span></div><img src="images/mj-web-before.jpg" alt="Before: the current Majlis website" width="1362" height="592" loading="lazy" class="zoomable " data-caption="Before: the current Majlis website"></div><figcaption>Before: the current Majlis website</figcaption></figure><div class="stage phone-stage bg-mj"><div class="phones"><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/mj-app-before.jpg" alt="Before: the current app" width="600" height="1333" loading="lazy" class="zoomable " data-caption="Before: the current app"></div></div></div><figcaption>Before: the current app</figcaption></figure></div></div></div></section><section class="cs2-sec" id="majlis-audit"><div class="cs2-head"><h2>UI audit: seven findings</h2><p>I reviewed the live website and app screen by screen and grouped the problems into seven findings.</p></div><div class="finds"><div class="find"><span class="fn">1</span><span class="ftag">Web + App</span><b>Icon inconsistency</b><p>Thick and thin outlines, filled and outline styles mixed, and icons that don't match their meaning.</p></div><div class="find"><span class="fn">2</span><span class="ftag">Web + App</span><b>Logo used as the search icon</b><p>The search field shows the Majlis logo instead of a magnifier, so it doesn't read as search.</p></div><div class="find"><span class="fn">3</span><span class="ftag">Web</span><b>Sidebar collapse hides content</b><p>Collapsing the sidebar removes custom feeds, drafts and my communities completely.</p></div><div class="find"><span class="fn">4</span><span class="ftag">Web</span><b>Extra scrollbar in latest posts</b><p>The latest posts panel scrolls inside itself, creating two scrollbars and trapping the mouse wheel.</p></div><div class="find"><span class="fn">5</span><span class="ftag">App</span><b>Create post needs work</b><p>Wrong button label, a Post button that works when empty, and the bottom menu visible while writing.</p></div><div class="find"><span class="fn">6</span><span class="ftag">Web + App</span><b>Flat font hierarchy</b><p>Almost all text is dark and bold, so nothing stands out and every line has to be read.</p></div><div class="find"><span class="fn">7</span><span class="ftag">Web + App</span><b>Weak overall layout</b><p>No clear focus, posts start low on the page, and mixed container styles and spacing.</p></div></div></section><section class="cs2-sec" id="majlis-process"><div class="cs2-head"><h2>Process and principles</h2><p>From audit to redesign in five steps, guided by five principles.</p></div><ol class="process five"><li><b>Explore</b><span>Use the live website and app as a real user.</span></li><li><b>Audit</b><span>List every UI and UX issue and group them into findings.</span></li><li><b>Define</b><span>Set design principles from the findings.</span></li><li><b>Redesign</b><span>Rebuild the homepage for web and mobile.</span></li><li><b>Review</b><span>Check the new design against each finding.</span></li></ol><div class="chips big"><span class="chip">Content first</span><span class="chip">One icon language</span><span class="chip">Clear hierarchy</span><span class="chip">Nothing hidden or trapped</span><span class="chip">One product on web and app</span></div></section><section class="cs2-sec" id="majlis-system"><div class="cs2-head"><h2>A small visual system</h2><p>Arabic type with a clear hierarchy, a calm green palette and one icon language.</p></div><div class="ar-type" dir="rtl"><div class="ar-big">أب</div><div class="ar-rows"><div style="font-size:24px;font-weight:700;color:#16201C"><span>مجلس للنقاش</span><small dir="ltr">Page title · 24 / Bold</small></div><div style="font-size:18px;font-weight:600;color:#16201C"><span>مجلس للنقاش</span><small dir="ltr">Post title · 18 / Semibold</small></div><div style="font-size:16px;font-weight:400;color:#16201C"><span>مجلس للنقاش</span><small dir="ltr">Body · 16 / Regular</small></div><div style="font-size:13px;font-weight:400;color:#4B5A54"><span>مجلس للنقاش</span><small dir="ltr">Meta · 13 / Regular</small></div></div></div><p class="hint">Typeface: Noto Sans Arabic · Regular, Semibold, Bold. Icons: one outline set, one stroke weight, filled only when active.</p><div class="swatch-row six"><button type="button" class="sw2" data-copy="#0F6B49"><i style="background:#0F6B49"></i><span>Primary green<code>#0F6B49</code></span></button><button type="button" class="sw2" data-copy="#E7F2EC"><i style="background:#E7F2EC"></i><span>Green tint<code>#E7F2EC</code></span></button><button type="button" class="sw2" data-copy="#16201C"><i style="background:#16201C"></i><span>Text<code>#16201C</code></span></button><button type="button" class="sw2" data-copy="#4B5A54"><i style="background:#4B5A54"></i><span>Secondary text<code>#4B5A54</code></span></button><button type="button" class="sw2" data-copy="#E2E8E5"><i style="background:#E2E8E5"></i><span>Border<code>#E2E8E5</code></span></button><button type="button" class="sw2" data-copy="#F5F7F6"><i style="background:#F5F7F6"></i><span>Background<code>#F5F7F6</code></span></button></div></section><section class="cs2-sec" id="majlis-web"><div class="cs2-head"><h2>Website redesign</h2><p>A calm homepage that puts posts first. Every change answers a finding.</p></div><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">majlis.com</span></div><img src="images/mj-web-after.jpg" alt="Redesigned homepage" width="1600" height="990" loading="lazy" class="zoomable " data-caption="Redesigned homepage"></div><figcaption>Redesigned homepage</figcaption></figure><ol class="fixes"><li><b>Search that looks like search</b><span>A magnifier replaces the logo; the logo stays in the corner.</span><em>Fixes finding 2</em></li><li><b>Sidebar with your communities</b><span>Custom feeds, drafts and my communities are always one click away.</span><em>Fixes finding 3</em></li><li><b>Latest posts, no inner scroll</b><span>A fixed list of posts, so only the page scrolls.</span><em>Fixes finding 4</em></li><li><b>Clear hierarchy on every post</b><span>Bold titles, grey meta and body, white cards with a vote column.</span><em>Fixes finding 6, 7</em></li><li><b>One outline icon set</b><span>Same stroke and style everywhere; filled only when active.</span><em>Fixes finding 1</em></li></ol><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i><span class="mb-url">majlis.com</span></div><img src="images/mj-web-rail.jpg" alt="Collapsed sidebar becomes an icon rail instead of disappearing" width="1600" height="990" loading="lazy" class="zoomable " data-caption="Collapsed sidebar becomes an icon rail instead of disappearing"></div><figcaption>Collapsed sidebar becomes an icon rail instead of disappearing</figcaption></figure></section><section class="cs2-sec" id="majlis-mobile"><div class="cs2-head"><h2>Mobile redesign</h2><p>The same system on the app homepage, from top to bottom.</p></div><div class="stage phone-stage bg-mj"><div class="phones"><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/mj-app-1.jpg" alt="Search and suggested communities" width="780" height="1691" loading="lazy" class="zoomable " data-caption="Search and suggested communities"></div></div></div><figcaption>Search and suggested communities</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/mj-app-2.jpg" alt="Calm post cards" width="780" height="1691" loading="lazy" class="zoomable " data-caption="Calm post cards"></div></div></div><figcaption>Calm post cards</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/mj-app-3.jpg" alt="Bottom bar with raised Create" width="780" height="1691" loading="lazy" class="zoomable " data-caption="Bottom bar with raised Create"></div></div></div><figcaption>Bottom bar with raised Create</figcaption></figure></div></div><ol class="fixes"><li><b>Logo back in the top bar</b><span>The brand is visible on the first screen.</span></li><li><b>Real search field</b><span>Full width, with a magnifier, right under the header.</span></li><li><b>Suggested communities as cards</b><span>Avatar, name and one clear Join button.</span></li><li><b>Calm post cards</b><span>Votes, comments and share in one row.</span></li><li><b>Bottom bar with Create</b><span>Five tabs, with Create raised in the middle.</span></li></ol></section><section class="cs2-sec" id="majlis-compare"><div class="cs2-head"><h2>Before and after</h2><p>Switch between the old and new website, and compare the app side by side.</p></div><div class="cmp" data-compare><div class="seg" role="group" aria-label="Version"><button type="button" data-cmp="after" aria-pressed="true">After</button><button type="button" data-cmp="before" aria-pressed="false">Before</button></div><figure class="cmp-panel" data-cmp-panel="after"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/mj-web-after.jpg" alt="After: redesigned website" width="1600" height="990" loading="lazy" class="zoomable " data-caption="After: redesigned website"></div><figcaption>After: redesigned website</figcaption></figure><figure class="cmp-panel" data-cmp-panel="before" hidden><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/mj-web-before.jpg" alt="Before: current website" width="1362" height="592" loading="lazy" class="zoomable " data-caption="Before: current website"></div><figcaption>Before: current website</figcaption></figure></div><div class="stage phone-stage bg-mj"><div class="phones"><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/mj-app-before.jpg" alt="Before" width="600" height="1333" loading="lazy" class="zoomable " data-caption="Before"></div></div></div><figcaption>Before</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/mj-app-after.jpg" alt="After" width="600" height="1299" loading="lazy" class="zoomable " data-caption="After"></div></div></div><figcaption>After</figcaption></figure></div></div></section><section class="cs2-sec" id="majlis-next"><div class="cs2-head"><h2>What I would design next</h2><p>If selected for the role, the rest of the product follows the same system.</p></div><div class="cs2-facts four"><div class="fact"><small>Create post</small><b>Full-screen composer, post types, rules and drafts</b></div><div class="fact"><small>Post & comments</small><b>Readable threads with clear vote and reply</b></div><div class="fact"><small>Profile</small><b>Stats, content tabs and a real empty state</b></div><div class="fact"><small>Login & sign-up</small><b>A clear reason to sign up, simpler forms</b></div></div></section></div>
+    <div class="cs-pager">
+      <a href="#case-now"><small>Previous</small><b>Now Mobile</b></a>
+      <a href="#case-bookbetter"><small>Next</small><b>BookBetter</b></a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
+</div>
+<div class="page" id="page-case-bookbetter" data-case>
+  <header class="cs2-hero bg-bb">
+    <div class="wrap">
+      <div class="breadcrumb on-dark" role="navigation" aria-label="Breadcrumb"><span class="breadcrumb-item"><a href="#work">Work</a></span><span class="breadcrumb-sep">›</span><span class="breadcrumb-item active">BookBetter</span></div>
+      <h1>BookBetter</h1>
+      <p class="cs2-intro">A wellness and beauty booking platform. I owned its UI/UX end to end at Nimbus Consulting.</p>
+      <div class="cs2-hero-img"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/bb-hero.jpg" alt="BookBetter homepage" width="1440" height="900" class="zoomable " data-caption="BookBetter homepage"></div></div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="cs2-meta"><dl><div><dt>Role</dt><dd>Sr. UI/UX Designer</dd></div><div><dt>Scope</dt><dd>Customer website</dd></div><div><dt>Stack</dt><dd>Figma, prototyping</dd></div><div><dt>Year</dt><dd>2024–25</dd></div></dl></div>
+    <div data-gallery><section class="cs2-sec" id="bookbetter-home"><div class="cs2-head"><h2>Customer homepage</h2><p>Search by service, location and date sits at the top; below it, featured merchants, favourites and popular experts.</p></div><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/bb-experts.jpg" alt="Featured merchants, favourites and popular experts" width="1440" height="1200" loading="lazy" class="zoomable " data-caption="Featured merchants, favourites and popular experts"></div><figcaption>Featured merchants, favourites and popular experts</figcaption></figure></section><section class="cs2-sec" id="bookbetter-browse"><div class="cs2-head"><h2>Browse and discover</h2><p>Photo-led cards make services easy to compare at a glance.</p></div><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/bb-gallery.jpg" alt="Top picks: photo-led service cards" width="1440" height="900" loading="lazy" class="zoomable " data-caption="Top picks: photo-led service cards"></div><figcaption>Top picks: photo-led service cards</figcaption></figure></section><section class="cs2-sec" id="bookbetter-booking"><div class="cs2-head"><h2>Merchant and booking</h2><p>Each salon gets a profile with services and team; booking is a calendar and time slots on one screen.</p></div><div class="shots-2"><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/bb-merchant.jpg" alt="Merchant profile: services, team, location" width="1440" height="1100" loading="lazy" class="zoomable " data-caption="Merchant profile: services, team, location"></div><figcaption>Merchant profile: services, team, location</figcaption></figure><figure class="shot"><div class="mock-browser"><div class="mb-bar"><i></i><i></i><i></i></div><img src="images/bb-service.jpg" alt="Service page: pick a store, date and time" width="1440" height="1000" loading="lazy" class="zoomable " data-caption="Service page: pick a store, date and time"></div><figcaption>Service page: pick a store, date and time</figcaption></figure></div></section><section class="cs2-sec" id="bookbetter-mobile"><div class="cs2-head"><h2>Mobile</h2><p>The same flow, designed mobile-first.</p></div><div class="stage phone-stage bg-bb"><div class="phones"><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/bb-m-1.jpg" alt="Home" width="467" height="1012" loading="lazy" class="zoomable " data-caption="Home"></div></div></div><figcaption>Home</figcaption></figure><figure class="phone-cell"><div class="phone"><i class="btn-l b1"></i><i class="btn-l b2"></i><i class="btn-l b3"></i><i class="btn-r b4"></i><span class="island"></span><div class="bezel"><div class="screen"><img src="images/bb-m-2.jpg" alt="Book a service" width="467" height="1012" loading="lazy" class="zoomable " data-caption="Book a service"></div></div></div><figcaption>Book a service</figcaption></figure></div></div></section><section class="cs2-sec" id="bookbetter-role"><div class="cs2-head"><h2>My role</h2><p>End-to-end UI/UX at Nimbus Consulting, from user flows to tested prototypes, with the Product Owner and a cross-functional team.</p></div><div class="cs2-facts"><div class="fact"><small>Company</small><b>Nimbus Consulting, USA</b></div><div class="fact"><small>Duration</small><b>May 2024 – May 2025</b></div><div class="fact"><small>Work</small><b>Flows, prototypes, usability testing</b></div></div></section></div>
+    <div class="cs-pager">
+      <a href="#case-majlis"><small>Previous</small><b>Majlis</b></a>
+      <a href="#case-rwg"><small>Next</small><b>RWG Mobile Wales</b></a>
+    </div>
+  </div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
+</div>
 <div class="page" id="page-design-system">
 
   <!-- Internal tab nav -->
   <div style="background:#fff;border-bottom:1px solid var(--border);position:sticky;top:56px;z-index:100">
     <div class="wrap" style="display:flex;gap:0">
-      <button class="ds-tab-btn active" onclick="switchDsTab('tokens')">🎨 Tokens</button>
-      <button class="ds-tab-btn" onclick="switchDsTab('components')">🧩 Components</button>
-      <button class="ds-tab-btn" onclick="switchDsTab('patterns')">📐 UI Patterns</button>
+      <button class="ds-tab-btn active" data-ds="tokens" onclick="switchDsTab('tokens')">🎨 Tokens</button>
+      <button class="ds-tab-btn" data-ds="components" onclick="switchDsTab('components')">🧩 Components</button>
+      <button class="ds-tab-btn" data-ds="patterns" onclick="switchDsTab('patterns')">📐 UI Patterns</button>
+      <button class="ds-tab-btn" data-ds="brands" onclick="switchDsTab('brands')">🔀 Brand themes</button>
     </div>
   </div>
 
@@ -766,7 +1534,7 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
     <div class="wrap">
       <p class="eyebrow">Design System · Tokens</p>
       <h2 class="sec-title">Colour &amp; Type Tokens</h2>
-      <p class="sec-sub">Primitive tokens that feed every component — one source of truth for colour, spacing, and typography, built for multi-brand scalability.</p>
+      <p class="hint" style="margin:-4px 0 10px">Tip: click any component on this page to see when to use it.</p><p class="sec-sub">Primitive tokens that feed every component — one source of truth for colour, spacing, and typography, built for multi-brand scalability.</p>
 
       <div class="grid-2">
         <div class="demo-card">
@@ -916,9 +1684,9 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
           </div>
           <div class="demo-sublabel">Breadcrumbs</div>
           <nav class="breadcrumb">
-            <span class="breadcrumb-item"><a href="#">Home</a></span>
+            <span class="breadcrumb-item"><a href="#home">Home</a></span>
             <span class="breadcrumb-sep">›</span>
-            <span class="breadcrumb-item"><a href="#">Design System</a></span>
+            <span class="breadcrumb-item"><a href="#design-system">Design System</a></span>
             <span class="breadcrumb-sep">›</span>
             <span class="breadcrumb-item active">Components</span>
           </nav>
@@ -968,37 +1736,6 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
         <div class="stat-card"><div class="stat-label">Monthly Users</div><div class="stat-value">24.8k</div><div class="stat-delta up">↑ 12.4% vs last month</div></div>
         <div class="stat-card"><div class="stat-label">Conversion Rate</div><div class="stat-value">3.6%</div><div class="stat-delta up">↑ 0.8pp this week</div></div>
         <div class="stat-card"><div class="stat-label">Avg. Session</div><div class="stat-value">4m 12s</div><div class="stat-delta down">↓ 8s from last week</div></div>
-      </div>
-
-      <!-- Cards -->
-      <div class="grid-3" style="margin-bottom:24px">
-        <div class="product-card">
-          <div class="card-img" style="background:var(--accent-lt)">🎨</div>
-          <div class="card-body">
-            <div class="card-tags"><span class="badge badge-blue"><span class="badge-dot"></span>Figma</span></div>
-            <div class="card-title">Component Library</div>
-            <div class="card-desc">200+ production-ready components. Auto-layout, variants, design tokens.</div>
-            <div class="card-footer"><span style="font-family:var(--mono);font-weight:700;font-size:16px">Free</span><button class="btn btn-primary btn-sm">View</button></div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="card-img" style="background:var(--green-lt)">📱</div>
-          <div class="card-body">
-            <div class="card-tags"><span class="badge badge-green"><span class="badge-dot"></span>Mobile</span></div>
-            <div class="card-title">Mobile UI Kit</div>
-            <div class="card-desc">iOS &amp; Android patterns — navigation, sheets, toasts, and micro-interactions.</div>
-            <div class="card-footer"><span style="font-family:var(--mono);font-weight:700;font-size:16px">£49</span><button class="btn btn-primary btn-sm">Buy</button></div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="card-img" style="background:var(--violet-lt)">⚡</div>
-          <div class="card-body">
-            <div class="card-tags"><span class="badge badge-violet"><span class="badge-dot"></span>System</span></div>
-            <div class="card-title">Token Studio Setup</div>
-            <div class="card-desc">Multi-brand theming, dark mode, and CSS export from a single token file.</div>
-            <div class="card-footer"><span style="font-family:var(--mono);font-weight:700;font-size:16px">£89</span><button class="btn btn-primary btn-sm">Buy</button></div>
-          </div>
-        </div>
       </div>
 
       <div class="grid-2" style="align-items:start">
@@ -1060,13 +1797,53 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
   </section>
   </div>
 
-  <footer><div class="wrap"><div class="footer-links"><a href="https://behance.net/ammad2090" target="_blank">Behance</a><a href="https://dribbble.com/ammad2090" target="_blank">Dribbble</a><a href="mailto:ammad2090@gmail.com">Email</a></div></div></footer>
+  <div id="ds-brands" class="ds-tab-panel" style="display:none">
+  <section class="section"><div class="wrap">
+    <p class="eyebrow">Design system · Brand themes</p>
+    <h2 class="sec-title">One structure, three MVNO brands</h2>
+    <p class="sec-sub">The design systems I built for Talk Home, Now Mobile and RWG, applied to the same plan card. Tokens and each brand’s signature style do all the work.</p>
+    <div class="brandlab" data-brandlab>
+        <div class="bl-side">
+          <div class="seg" role="group" aria-label="Choose a brand">
+            <button type="button" data-brand="thm" aria-pressed="false">Talk Home</button>
+            <button type="button" data-brand="now" aria-pressed="false">Now Mobile</button>
+            <button type="button" data-brand="rwg" aria-pressed="true">RWG</button>
+          </div>
+          <h3 data-bl="name">RWG Mobile Wales</h3>
+          <p class="bl-note" data-bl="sig">Clean white cards on navy, with red reserved for actions and green for status.</p>
+          <div class="bl-tokens" data-bl="tokens"></div>
+          <p class="bl-meta">Typeface: <b data-bl="font">Poppins</b></p>
+          <p class="bl-meta" style="margin-top:10px"><a href="#case-rwg" data-bl="link" style="color:var(--accent);font-weight:600;text-decoration:none">Read the RWG case study</a></p>
+        </div>
+        <div>
+          <div class="bl-stage" data-brand="rwg">
+            <div class="bl-glow"></div>
+            <div class="bl-top"><span class="bl-brand" data-bl="word">RWG</span><span class="bl-navdots"><span>Plans</span><span>Roaming</span><span>Help</span></span></div>
+            <div class="bl-head">Pay as you go, your way</div>
+            <div class="bl-cards">
+              <div class="bl-card"><span class="t">Popular</span><div class="n">Plan name</div><div class="l"></div><div class="l s"></div><div class="b">Choose plan</div></div>
+              <div class="bl-card"><span class="t">Roaming</span><div class="n">Travel add-on</div><div class="l"></div><div class="b">See details</div></div>
+            </div>
+          </div>
+          <p class="bl-caption">Same markup in every state. Only the brand’s tokens and its signature card style change. Click a colour to copy its hex.</p>
+        </div>
+      </div>
+  </div></section>
+  </div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
 </div>
-
-
-<!-- ══════════════════════════════════════
-     PAGE: EXPERIENCE
-══════════════════════════════════════ -->
 <div class="page" id="page-experience">
   <section class="section">
     <div class="wrap">
@@ -1117,6 +1894,7 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
               <li>Managed end-to-end UI/UX design for BookBetter while contributing to concurrent projects.</li>
               <li>Ensured seamless user interactions by conducting usability research, testing, and iterative improvements.</li>
             </ul>
+            <a class="exp-case" href="#case-bookbetter">Read the BookBetter case study</a>
           </div>
         </div>
 
@@ -1217,13 +1995,20 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       </div>
     </div>
   </section>
-  <footer><div class="wrap"><div class="footer-links"><a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank">LinkedIn</a><a href="mailto:ammad2090@gmail.com">Email</a></div></div></footer>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
 </div>
-
-
-<!-- ══════════════════════════════════════
-     PAGE: SKILLS & TOOLS
-══════════════════════════════════════ -->
 <div class="page" id="page-skills">
   <section class="section">
     <div class="wrap">
@@ -1235,20 +2020,21 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
         <div>
           <div class="skill-section">
             <div class="skill-section-title">UX &amp; Design</div>
+            <p class="hint" style="margin:-4px 0 10px">Skills marked ↗ open the projects where I used them.</p>
             <span class="skill-pill featured">User Experience Design</span>
             <span class="skill-pill featured">Interaction Design</span>
-            <span class="skill-pill featured">Design Systems</span>
-            <span class="skill-pill featured">Component Libraries</span>
+            <a class="skill-pill featured" href="#work" data-filter="design-system" title="See projects">Design Systems</a>
+            <a class="skill-pill featured" href="#work" data-filter="design-system" title="See projects">Component Libraries</a>
             <span class="skill-pill featured">User Interface Design</span>
-            <span class="skill-pill featured">Prototyping</span>
-            <span class="skill-pill featured">Wireframing &amp; Mockups</span>
+            <a class="skill-pill featured" href="#work" data-filter="product" title="See projects">Prototyping</a>
+            <a class="skill-pill featured" href="#work" data-filter="product" title="See projects">Wireframing &amp; Mockups</a>
             <span class="skill-pill">Empathy Maps</span>
             <span class="skill-pill">Affinity Diagrams</span>
-            <span class="skill-pill">Usability Research</span>
-            <span class="skill-pill">User Testing</span>
-            <span class="skill-pill featured">Web Design</span>
+            <a class="skill-pill" href="#work" data-filter="product" title="See projects">Usability Research</a>
+            <a class="skill-pill" href="#work" data-filter="product" title="See projects">User Testing</a>
+            <a class="skill-pill featured" href="#work" data-filter="redesign" title="See projects">Web Design</a>
             <span class="skill-pill featured">Mobile App Design</span>
-            <span class="skill-pill">Style Guides</span>
+            <a class="skill-pill" href="#work" data-filter="design-system" title="See projects">Style Guides</a>
           </div>
 
           <div class="skill-section">
@@ -1369,25 +2155,38 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       </div>
     </div>
   </section>
-  <footer><div class="wrap"><div class="footer-links"><a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank">LinkedIn</a><a href="mailto:ammad2090@gmail.com">Email</a></div></div></footer>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
 </div>
-
-
-<!-- ══════════════════════════════════════
-     PAGE: ABOUT
-══════════════════════════════════════ -->
 <div class="page" id="page-about">
   <section class="section">
     <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <div class="about-grid">
         <div>
-          <p class="eyebrow">About Me</p>
-          <h2 class="sec-title">Muhammad Ammad</h2>
-          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:14px;font-size:15px">A highly skilled UI/UX Design Professional with over eight years of experience, specialising in user experience design, web design, and digital solutions. Adept at creating innovative and user-centric designs that enhance engagement and functionality.</p>
-          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:14px;font-size:15px">Proven expertise in delivering strategic design solutions across diverse industries — including transportation, hospitality, food, healthcare, advertising, marketing, technology, education, publishing, and telecommunications.</p>
-          <p style="color:var(--ink-2);line-height:1.75;font-size:15px">Recognised for adaptability, creativity, and a results-driven approach to crafting seamless digital experiences. Currently working with UK-based clients at Now Software.</p>
+          <p class="eyebrow">About</p>
+          <h2 class="sec-title">Designer with a requirements analyst’s habits</h2>
+          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:14px;font-size:16px">I’m Muhammad Ammad, a UI/UX designer with more than eight years of experience across the UK, USA, UAE and Pakistan. I started out in graphic and frontend work, moved into UX, and now spend most of my time on design systems and product UI.</p>
+          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:14px;font-size:16px">Lately my focus has been UK mobile brands (MVNOs) like Talk Home Mobile, Now Mobile and RWG Mobile Wales. Telecom sites look simple but carry a lot of detail: plans, roaming, top-ups, terms. That’s where a clear brief and a solid system pay off.</p>
+          <p style="color:var(--ink-2);line-height:1.75;margin-bottom:14px;font-size:16px">I don’t stop at Figma. I can build production-ready frontend components myself, and I use AI tools to speed up the repetitive parts of design while reviewing every output by hand.</p>
+          <div class="fact-list">
+            <div class="fact"><small>Experience</small><b>8+ years</b></div>
+            <div class="fact"><small>Focus</small><b>Design systems, product UI</b></div>
+            <div class="fact"><small>Looking for</small><b>UI/UX or Product Designer roles</b></div>
+            <div class="fact"><small>Work setup</small><b>Remote, or on-site in Islamabad</b></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" href="#work">See my work</a><a class="btn btn-secondary" href="#experience">Career history</a></div>
         </div>
-
         <div class="profile-card">
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)">
             <span class="avatar avatar-lg" style="background:var(--accent)">MA</span>
@@ -1424,80 +2223,10 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
           </div>
 
           <div style="margin-top:20px">
-            <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="goto('contact')">Get in touch →</button>
+            <a class="btn btn-primary" style="width:100%;justify-content:center" href="#contact">Get in touch</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <footer><div class="wrap"><div class="footer-links"><a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank">LinkedIn</a><a href="https://behance.net/ammad2090" target="_blank">Behance</a><a href="https://dribbble.com/ammad2090" target="_blank">Dribbble</a><a href="mailto:ammad2090@gmail.com">Email</a></div></div></footer>
-</div>
-
-
-<!-- ══════════════════════════════════════
-     PAGE: CONTACT
-══════════════════════════════════════ -->
-<div class="page" id="page-contact">
-  <section class="section">
-    <div class="wrap" style="max-width:640px">
-      <p class="eyebrow">Contact</p>
-      <h2 class="sec-title">Let's work together</h2>
-      <p class="sec-sub">Drop a message with your project details and I'll get back within 24 hours. I'm currently open to new opportunities.</p>
-
-      <form action="https://formspree.io/f/mvznnzao" method="POST" enctype="text/plain" style="background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;box-shadow:var(--sh-sm);display:flex;flex-direction:column;gap:16px">
-          <div class="grid-2" style="gap:14px">
-            <div class="field">
-              <label class="field-label" for="contact-name">Your name</label>
-              <input class="input" id="contact-name" name="name" type="text" placeholder="e.g. Sarah Jones" required />
-            </div>
-            <div class="field">
-              <label class="field-label" for="contact-email">Email address</label>
-              <input class="input" id="contact-email" name="email" type="email" placeholder="you@company.com" required />
-            </div>
-          </div>
-          <div class="field">
-            <label class="field-label" for="contact-phone">Phone number <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
-            <input class="input" id="contact-phone" name="phone" type="tel" placeholder="+1 234 567 8900" />
-          </div>
-          <div class="field">
-            <label class="field-label" for="contact-type">Project type</label>
-            <select class="select" id="contact-type" name="project_type" required>
-              <option value="" disabled selected>Select…</option>
-              <option value="Design System">Design System</option>
-              <option value="Component Library">Component Library</option>
-              <option value="UI / Web Design">UI / Web Design</option>
-              <option value="UX Research">UX Research</option>
-              <option value="Mobile App Design">Mobile App Design</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label class="field-label" for="contact-budget">Budget range <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
-            <select class="select" id="contact-budget" name="budget">
-              <option value="" disabled selected>Select…</option>
-              <option value="Under $500">Under $500</option>
-              <option value="$500 – $1,000">$500 – $1,000</option>
-              <option value="$1,000 – $5,000">$1,000 – $5,000</option>
-              <option value="$5,000+">$5,000+</option>
-              <option value="Let's discuss">Let's discuss</option>
-            </select>
-          </div>
-          <div class="field">
-            <label class="field-label" for="contact-message">Message</label>
-            <textarea class="input" id="contact-message" name="message" style="min-height:120px" placeholder="Tell me about your project, timeline, and goals…" required></textarea>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-            <button type="submit" class="btn btn-primary btn-lg">Send message →</button>
-            <button type="reset" class="btn btn-secondary">Clear form</button>
-          </div>
-      </form>
-
-      <!-- Quick links -->
-      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
-        <a href="mailto:ammad2090@gmail.com" class="btn btn-secondary">📧 ammad2090@gmail.com</a>
-        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" class="btn btn-secondary">💼 LinkedIn</a>
-        <a href="https://behance.net/ammad2090" target="_blank" class="btn btn-secondary">🎨 Behance</a>
-        <a href="https://dribbble.com/ammad2090" target="_blank" class="btn btn-secondary">🏀 Dribbble</a>
+      
       </div>
     </div>
   </section>
@@ -1506,73 +2235,366 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center}
       <div class="footer-name">Muhammad Ammad</div>
       <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
       <div class="footer-links">
-        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank">LinkedIn</a>
-        <a href="https://dribbble.com/ammad2090" target="_blank">Dribbble</a>
-        <a href="https://behance.net/ammad2090" target="_blank">Behance</a>
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
         <a href="mailto:ammad2090@gmail.com">Email</a>
       </div>
-      <div style="margin-top:16px;font-size:11px;color:var(--paper-3)">© 2025 Muhammad Ammad · All rights reserved</div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
     </div>
   </footer>
 </div>
-
-
-<!-- ══════════════════════════════════════
-     JS
-══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2 class="sec-title">Let’s talk</h2>
+      <p class="sec-sub">Hiring for a role or planning a project? Send a message and I’ll reply within 24 hours.</p>
+      <div class="contact-grid">
+        <div>
+          <form class="form-card" id="contactForm" action="https://formspree.io/f/mvznnzao" method="POST" novalidate>
+            <div class="field">
+              <span class="field-label">I’m getting in touch about</span>
+              <div class="seg" role="group" aria-label="Inquiry type">
+                <button type="button" data-inq="Job opportunity" aria-pressed="true">A job opportunity</button>
+                <button type="button" data-inq="Freelance project" aria-pressed="false">A freelance project</button>
+              </div>
+              <input type="hidden" name="inquiry" value="Job opportunity">
+            </div>
+            <div class="grid-2" style="gap:14px">
+              <div class="field"><label class="field-label" for="c-name">Your name</label><input class="input" id="c-name" name="name" type="text" autocomplete="name" placeholder="e.g. Sarah Jones"><span class="err" data-err="name"></span></div>
+              <div class="field"><label class="field-label" for="c-email">Email address</label><input class="input" id="c-email" name="email" type="email" autocomplete="email" placeholder="you@company.com"><span class="err" data-err="email"></span></div>
+            </div>
+            <div class="field" data-for="job"><label class="field-label" for="c-company">Company and role <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label><input class="input" id="c-company" name="company_role" type="text" placeholder="e.g. Acme, Product Designer"></div>
+            <div class="field" data-for="freelance" hidden><label class="field-label" for="c-type">Project type</label>
+              <select class="select" id="c-type" name="project_type"><option value="">Select…</option><option>Design system</option><option>Website or landing page</option><option>Mobile app design</option><option>UX audit</option><option>Other</option></select></div>
+            <div class="field" data-for="freelance" hidden><label class="field-label" for="c-budget">Budget range <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
+              <select class="select" id="c-budget" name="budget"><option value="">Select…</option><option>Under $500</option><option>$500 – $1,000</option><option>$1,000 – $5,000</option><option>$5,000+</option><option>Let’s discuss</option></select></div>
+            <div class="field"><label class="field-label" for="c-msg">Message</label><textarea class="input" id="c-msg" name="message" style="min-height:130px" placeholder="A few lines about the role or project, and your timeline"></textarea><span class="err" data-err="message"></span></div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button type="submit" class="btn btn-primary btn-lg" data-submit>Send message</button><span class="err" data-err="form"></span></div>
+          </form>
+          <div class="sent" id="contactSent" hidden>
+            <div class="ok">✓</div>
+            <h3 style="font-family:var(--serif);font-size:26px;font-weight:400">Message sent</h3>
+            <p style="color:var(--ink-2);margin:8px 0 18px">Thanks. I’ll reply to the email you gave within 24 hours.</p>
+            <button type="button" class="btn btn-secondary" data-reset-form>Send another message</button>
+          </div>
+        </div>
+        <aside class="side-card">
+          <h3>What happens next</h3>
+          <ol class="next-steps"><li>I read your message and reply within 24 hours.</li><li>We book a short call to go through the role or brief.</li><li>For projects, I send a written design brief before any work starts.</li></ol>
+          <div style="border-top:1px solid var(--border);margin:20px 0 4px"></div>
+          <h3 style="margin-top:16px">Prefer email?</h3>
+          <div class="copy-row"><a href="mailto:ammad2090@gmail.com" style="font-weight:600;color:var(--accent)">ammad2090@gmail.com</a><button type="button" class="btn btn-sm btn-secondary" data-copy="ammad2090@gmail.com">Copy</button></div>
+          <div class="tagrow" style="margin-top:14px"><a class="btn btn-sm btn-secondary" href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a><a class="btn btn-sm btn-secondary" href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a><a class="btn btn-sm btn-secondary" href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="wrap">
+      <div class="footer-name">Muhammad Ammad</div>
+      <div class="footer-meta">Senior UI/UX Designer · Product Designer · Design Systems</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/muhammad-ammad-4a3592119" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://dribbble.com/ammad2090" target="_blank" rel="noopener">Dribbble</a>
+        <a href="https://behance.net/ammad2090" target="_blank" rel="noopener">Behance</a>
+        <a href="mailto:ammad2090@gmail.com">Email</a>
+      </div>
+      <div class="footer-copy">© 2026 Muhammad Ammad</div>
+    </div>
+  </footer>
+</div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-const PAGES = ['home','design-system','experience','skills','about','contact'];
+/* ═══ Routing ═══════════════════════════════════════════ */
+const PAGES = ['home','work','case-rwg','case-thm','case-now','case-majlis','case-bookbetter','design-system','experience','skills','about','contact'];
+const TITLES = {
+  'home':'Muhammad Ammad — Senior UI/UX Designer',
+  'work':'Work — Muhammad Ammad',
+  'case-rwg':'RWG Mobile Wales case study — Muhammad Ammad',
+  'case-thm':'Talk Home Mobile case study — Muhammad Ammad',
+  'case-now':'Now Mobile case study — Muhammad Ammad',
+  'case-bookbetter':'BookBetter case study — Muhammad Ammad',
+  'case-majlis':'Majlis case study — Muhammad Ammad',
+  'design-system':'Design System — Muhammad Ammad',
+  'experience':'Experience — Muhammad Ammad',
+  'skills':'Skills & Tools — Muhammad Ammad',
+  'about':'About — Muhammad Ammad',
+  'contact':'Contact — Muhammad Ammad'
+};
+let workFilter = 'all';
 
-function goto(id) {
-  PAGES.forEach(p => {
-    const el = document.getElementById('page-' + p);
-    if (el) el.classList.toggle('active', p === id);
+function currentPage(){ const h = location.hash.slice(1); return PAGES.includes(h) ? h : 'home'; }
+
+function goto(id){
+  if (!PAGES.includes(id)) id = 'home';
+  if (location.hash !== '#' + id) { try { history.pushState({id}, '', '#' + id); } catch(e) {} }
+  render(id);
+}
+
+function render(id){
+  PAGES.forEach(p => { const el = document.getElementById('page-' + p); if (el) el.classList.toggle('active', p === id); });
+  const navId = id.startsWith('case-') ? 'work' : id;
+  document.querySelectorAll('[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === navId));
+  document.title = TITLES[id] || TITLES.home;
+  document.getElementById('mobileMenu').classList.remove('open');
+  window.scrollTo(0, 0);
+  if (id === 'work') applyFilter();
+  setupSpy(id);
+  updateProgress();
+  setTimeout(animateBars, 100);
+}
+window.addEventListener('popstate', () => render(currentPage()));
+window.addEventListener('hashchange', () => render(currentPage()));
+
+function toggleMobile(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+
+/* ═══ Global click handling ═════════════════════════════ */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (a) {
+    const id = a.getAttribute('href').slice(1);
+    if (a.dataset.toc) { e.preventDefault(); const t = document.getElementById(a.dataset.toc); if (t) t.scrollIntoView({behavior:'smooth'}); return; }
+    if (PAGES.includes(id)) { e.preventDefault(); if (a.dataset.filter) workFilter = a.dataset.filter; goto(id); return; }
+  }
+  const c = e.target.closest('[data-copy]');
+  if (c) copyText(c.dataset.copy);
+});
+
+/* ═══ Toast + copy ══════════════════════════════════════ */
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+function copyText(text){
+  const done = () => toast('Copied ' + text);
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else fallbackCopy(text, done);
+}
+function fallbackCopy(text, done){
+  const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch(e) { toast(text); }
+  ta.remove();
+}
+
+/* ═══ Segmented controls helper ═════════════════════════ */
+function press(group, btn){ group.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false')); }
+
+/* ═══ Brand lab ═════════════════════════════════════════ */
+const BRANDS = {
+  thm: { name:'Talk Home Mobile', word:'Talk Home', font:'Poppins', link:'#case-thm', linkText:'Read the Talk Home case study',
+         sig:'Sky blue and deep navy, with lime reserved for offers and key actions.',
+         tokens:[['Sky Blue','#2096D3'],['Deep Navy','#242B60'],['Lime','#DDE22F']] },
+  now: { name:'Now Mobile', word:'Now Mobile', font:'Space Grotesk + Poppins', link:'#case-now', linkText:'Read the Now Mobile case study',
+         sig:'Bold Bento: dark tiles, electric lime outlines and hard offset shadows.',
+         tokens:[['Green','#1BB127'],['Lime','#B6FF3C'],['Near-black','#0B0F0D']] },
+  rwg: { name:'RWG Mobile Wales', word:'RWG', font:'Poppins', link:'#case-rwg', linkText:'Read the RWG case study',
+         sig:'Clean white cards on navy, with red for actions and green for status.',
+         tokens:[['Red','#D4202C'],['Green','#06A04B'],['Navy','#1F2459']] }
+};
+function setBrand(lab, key){
+  const b = BRANDS[key];
+  lab.querySelector('.bl-stage').dataset.brand = key;
+  press(lab.querySelector('.seg'), lab.querySelector('.seg [data-brand="' + key + '"]'));
+  lab.querySelector('[data-bl="name"]').textContent = b.name;
+  lab.querySelector('[data-bl="word"]').textContent = b.word;
+  lab.querySelector('[data-bl="sig"]').textContent = b.sig;
+  lab.querySelector('[data-bl="font"]').textContent = b.font;
+  const link = lab.querySelector('[data-bl="link"]'); link.setAttribute('href', b.link); link.textContent = b.linkText;
+  lab.querySelector('[data-bl="tokens"]').innerHTML = b.tokens.map(([n,h]) =>
+    '<button type="button" class="bl-tok" data-copy="' + h + '"><i style="background:' + h + '"></i>' + n + '<code>' + h + '</code></button>').join('');
+}
+document.querySelectorAll('[data-brandlab]').forEach(lab => {
+  lab.querySelectorAll('.seg [data-brand]').forEach(btn => btn.addEventListener('click', () => setBrand(lab, btn.dataset.brand)));
+  setBrand(lab, 'rwg');
+});
+
+/* ═══ Tabbed viewers ════════════════════════════════════ */
+document.querySelectorAll('[data-tabs]').forEach(v => {
+  const btns = v.querySelectorAll('[data-tab]');
+  btns.forEach((btn, i) => btn.addEventListener('click', () => {
+    press(btn.parentElement, btn);
+    v.querySelectorAll('[data-panel]').forEach(p => p.hidden = p.dataset.panel !== btn.dataset.tab);
+    const hint = v.querySelector('.viewer-bar .hint'); if (hint) hint.textContent = 'Concept ' + (i+1) + ' of ' + btns.length;
+  }));
+});
+
+/* ═══ THM frame toggles ═════════════════════════════════ */
+document.querySelectorAll('[data-frame]').forEach(btn => btn.addEventListener('click', () => {
+  const viewer = btn.closest('.viewer'); const frame = viewer.querySelector('.frame');
+  press(btn.parentElement, btn);
+  frame.dataset[btn.dataset.frame] = btn.dataset.val;
+  const size = frame.dataset.size === 'mobile' ? 'Mobile · 430px frame, 16px side margins' : 'Desktop';
+  viewer.querySelector('[data-frame-label]').textContent = size + ' · ' + frame.dataset.theme + ' theme';
+}));
+
+/* ═══ Wave animation toggle ═════════════════════════════ */
+document.querySelectorAll('[data-wave] .wave-toggle').forEach(btn => btn.addEventListener('click', () => {
+  const st = btn.closest('[data-wave]'); const paused = st.classList.toggle('paused');
+  btn.setAttribute('aria-pressed', paused); btn.textContent = paused ? 'Play animation' : 'Pause animation';
+}));
+
+/* ═══ AI widget demo ════════════════════════════════════ */
+document.querySelectorAll('[data-ai] .ai-pill').forEach(btn => btn.addEventListener('click', () => {
+  const open = btn.closest('[data-ai]').classList.toggle('open');
+  btn.setAttribute('aria-expanded', open); btn.textContent = open ? 'Close summary' : 'Summarize with AI';
+}));
+
+/* ═══ Work filters ══════════════════════════════════════ */
+function applyFilter(){
+  const page = document.getElementById('page-work');
+  page.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', b.dataset.filter === workFilter ? 'true' : 'false'));
+  let n = 0;
+  page.querySelectorAll('[data-workgrid] .tile').forEach(c => {
+    const show = workFilter === 'all' || c.dataset.tags.split(' ').includes(workFilter);
+    c.hidden = !show; if (show) n++;
   });
-  // update active nav link
-  document.querySelectorAll('.nav-links > li > a[data-page]').forEach(a => {
-    a.classList.toggle('active', a.dataset.page === id);
+  page.querySelector('[data-count]').textContent = 'Showing ' + n + (n === 1 ? ' project' : ' projects');
+}
+document.querySelectorAll('#page-work [data-filter]').forEach(b => b.addEventListener('click', () => { workFilter = b.dataset.filter; applyFilter(); }));
+
+/* ═══ Case study: table of contents + reading progress ═ */
+let spy;
+function setupSpy(id){
+  if (spy) spy.disconnect();
+  if (!id.startsWith('case-')) return;
+  const page = document.getElementById('page-' + id);
+  const links = page.querySelectorAll('.cs-toc a');
+  spy = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) links.forEach(l => l.classList.toggle('on', l.dataset.toc === en.target.id)); });
+  }, { rootMargin: '-90px 0px -60% 0px' });
+  page.querySelectorAll('.cs-sec').forEach(s => spy.observe(s));
+}
+function updateProgress(){
+  const bar = document.getElementById('csProgress');
+  if (!currentPage().startsWith('case-')) { bar.style.width = '0'; return; }
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (max > 0 ? Math.min(100, scrollY / max * 100) : 0) + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+
+/* ═══ Contact form ══════════════════════════════════════ */
+(function(){
+  const form = document.getElementById('contactForm'); if (!form) return;
+  const sent = document.getElementById('contactSent');
+  const inq = form.querySelector('[name="inquiry"]');
+  form.querySelectorAll('[data-inq]').forEach(btn => btn.addEventListener('click', () => {
+    press(btn.parentElement, btn); inq.value = btn.dataset.inq;
+    const freelance = btn.dataset.inq === 'Freelance project';
+    form.querySelectorAll('[data-for="freelance"]').forEach(f => f.hidden = !freelance);
+    form.querySelectorAll('[data-for="job"]').forEach(f => f.hidden = freelance);
+  }));
+  const setErr = (name, msg) => {
+    const el = form.querySelector('[data-err="' + name + '"]'); if (el) el.textContent = msg;
+    const input = form.querySelector('[name="' + name + '"]'); if (input) input.classList.toggle('invalid', !!msg);
+    return !msg;
+  };
+  function validate(){
+    const v = n => form.querySelector('[name="' + n + '"]').value.trim();
+    let ok = true;
+    ok = setErr('name', v('name') ? '' : 'Enter your name.') && ok;
+    ok = setErr('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email')) ? '' : 'Enter a valid email address, like name@company.com.') && ok;
+    ok = setErr('message', v('message').length >= 10 ? '' : 'Add a few words about the role or project (at least 10 characters).') && ok;
+    return ok;
+  }
+  form.querySelectorAll('.input').forEach(i => i.addEventListener('blur', () => { if (form.dataset.tried) validate(); }));
+  form.addEventListener('submit', async e => {
+    e.preventDefault(); form.dataset.tried = '1'; setErr('form', '');
+    if (!validate()) { const bad = form.querySelector('.invalid'); if (bad) bad.focus(); return; }
+    const btn = form.querySelector('[data-submit]'); btn.classList.add('is-loading'); btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error();
+      form.hidden = true; sent.hidden = false; form.reset();
+    } catch(err) {
+      setErr('form', 'The message didn’t send. Check your connection and try again, or email ammad2090@gmail.com.');
+    } finally { btn.classList.remove('is-loading'); btn.textContent = 'Send message'; }
   });
-  window.scrollTo({top: 0, behavior: 'smooth'});
-  // animate progress bars on skills/patterns page
-  setTimeout(() => animateBars(), 100);
-}
+  sent.querySelector('[data-reset-form]').addEventListener('click', () => { sent.hidden = true; form.hidden = false; delete form.dataset.tried; });
+})();
 
-function toggleMobile() {
-  document.getElementById('mobileMenu').classList.toggle('open');
+/* ═══ Design system page ════════════════════════════════ */
+function switchDsTab(id){
+  document.querySelectorAll('.ds-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.ds === id));
+  document.querySelectorAll('.ds-tab-panel').forEach(p => { const on = p.id === 'ds-' + id; p.style.display = on ? 'block' : 'none'; p.classList.toggle('active', on); });
+  setTimeout(animateBars, 100);
 }
-
-function switchDsTab(id) {
-  document.querySelectorAll('.ds-tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.ds-tab-panel').forEach(p => { p.style.display='none'; p.classList.remove('active'); });
-  document.getElementById('ds-' + id).style.display = 'block';
-  document.getElementById('ds-' + id).classList.add('active');
-  event.target.classList.add('active');
-  setTimeout(() => animateBars(), 100);
-}
-
-function switchTab(e, id) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+function switchTab(e, id){
+  const box = e.target.closest('.demo-card') || document;
+  box.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  box.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   e.target.classList.add('active');
   document.getElementById('tab-' + id).classList.add('active');
 }
-
-function animateBars() {
-  document.querySelectorAll('.prog-bar').forEach((b, i) => {
-    const w = b.dataset.w;
-    if (w && b.style.width === '0px' || b.style.width === '0') {
-      setTimeout(() => { b.style.width = w; }, i * 110);
-    }
-  });
-}
-
-// checkbox interactivity
-document.querySelectorAll('.check-wrap').forEach(w => {
-  w.addEventListener('click', () => { const inp = w.querySelector('input'); inp.checked = !inp.checked; });
+const DS_DOCS = {
+  'Primary':'Primary button: the main action on a screen. Use one per view.',
+  'Secondary':'Secondary button: supporting actions that sit next to a primary.',
+  'Ghost':'Ghost button: low-emphasis actions, like “Learn more”.',
+  'Danger':'Danger button: destructive actions. Always confirm before running them.',
+  'Small':'Small size: dense layouts like tables and toolbars.',
+  'Default':'Default size: forms and most page actions.',
+  'Large':'Large size: hero and page-level calls to action.',
+  'Hover me':'Tooltip: short hints on hover or focus. Never put essential information only in a tooltip.',
+  'Cancel':'Dialog: Cancel closes without changes, so it sits on the left and stays low-emphasis.',
+  'Delete':'Dialog: the destructive action is red, on the right, and named after what it does.'
+};
+document.getElementById('page-design-system').addEventListener('click', e => {
+  const btn = e.target.closest('button'); if (!btn || btn.closest('.ds-tab-btn') || btn.classList.contains('tab-btn') || btn.hasAttribute('onclick') || btn.closest('[data-brandlab]')) return;
+  const label = btn.textContent.trim();
+  if (label === 'Copy link') { copyText(location.href.split('#')[0] + '#design-system'); return; }
+  if (/Favourite/.test(label)) { const on = btn.getAttribute('aria-pressed') !== 'true'; btn.setAttribute('aria-pressed', on); toast(on ? 'Toggle button: pressed state shown' : 'Toggle button: back to default'); return; }
+  if (label === 'Download' || label === 'Schedule') {
+    const orig = btn.innerHTML; btn.classList.add('is-loading'); btn.textContent = 'Working…';
+    setTimeout(() => { btn.classList.remove('is-loading'); btn.innerHTML = orig; toast('Loading state: the button shows progress, then returns to normal.'); }, 900);
+    return;
+  }
+  if (!label) { toast('Icon button: always give it an accessible name (aria-label).'); return; }
+  if (DS_DOCS[label]) toast(DS_DOCS[label]);
 });
 
-// init
-goto('home');
+function animateBars(){
+  document.querySelectorAll('.prog-bar').forEach((b, i) => {
+    const w = b.dataset.w;
+    if (w && (b.style.width === '0px' || b.style.width === '0' || b.style.width === '')) setTimeout(() => { b.style.width = w; }, i * 110);
+  });
+}
+/* Checkboxes are <label>s, so the browser toggles them natively. */
+
+/* ═══ Init ══════════════════════════════════════════════ */
+render(currentPage());
+
+/* ═══ Compare toggles ═══ */
+document.querySelectorAll('[data-compare]').forEach(c => c.querySelectorAll('[data-cmp]').forEach(btn => btn.addEventListener('click', () => {
+  press(btn.parentElement, btn);
+  c.querySelectorAll('[data-cmp-panel]').forEach(p => p.hidden = p.dataset.cmpPanel !== btn.dataset.cmp);
+})));
+
+/* ═══ Lightbox ═══ */
+(function(){
+  const lb = document.createElement('div'); lb.className = 'lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true');
+  lb.innerHTML = '<img alt=""><div class="lb-cap"></div><button class="lb-close" aria-label="Close">✕</button><button class="lb-prev" aria-label="Previous">‹</button><button class="lb-next" aria-label="Next">›</button>';
+  document.body.appendChild(lb);
+  const im = lb.querySelector('img'), cap = lb.querySelector('.lb-cap');
+  let list = [], idx = 0, lastFocus;
+  function show(i){ idx = (i + list.length) % list.length; const s = list[idx]; im.src = s.dataset.full || s.currentSrc || s.src; im.alt = s.alt; cap.textContent = s.dataset.caption + (list.length > 1 ? '  ·  ' + (idx+1) + ' / ' + list.length : ''); lb.querySelector('.lb-prev').hidden = lb.querySelector('.lb-next').hidden = list.length < 2; }
+  function open(img){ const scope = img.closest('[data-gallery]') || img.closest('.page'); list = [...scope.querySelectorAll('img.zoomable')].filter(x => x.offsetParent !== null); if (!list.includes(img)) list = [img]; lastFocus = document.activeElement; show(list.indexOf(img)); lb.classList.add('open'); lb.querySelector('.lb-close').focus(); document.body.style.overflow = 'hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+  document.addEventListener('click', e => {
+    const img = e.target.closest('img.zoomable');
+    if (img && !img.closest('a')) { e.preventDefault(); open(img); }
+  });
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', () => show(idx - 1));
+  lb.querySelector('.lb-next').addEventListener('click', () => show(idx + 1));
+  document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(idx - 1); if (e.key === 'ArrowRight') show(idx + 1); });
+})();
 </script>
 </body>
 </html>
